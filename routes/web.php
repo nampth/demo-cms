@@ -11,6 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['namespace' => 'Backend','prefix'=>'admin' , 'as'=>'admin', 'middleware'=>'admin'], function (){
+    include_route_files(__DIR__.'/backend/');
+});
+
+Route::group(['namespace' => 'Frontend', 'as' => 'frontend.'], function () {
+    include_route_files(__DIR__.'/frontend/');
 });
