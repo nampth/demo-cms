@@ -43,8 +43,10 @@ class Kernel extends HttpKernel
         ],
 
         'admin' => [
-//            'auth',
-//            'password_expires',
+            'auth',
+            'password_expires',
+            'permission',
+//            'role'
         ],
     ];
 
@@ -63,8 +65,8 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'password_expires' => \App\Http\Middleware\PasswordExpires::class,
-//        'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
-//        'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
+        'permission' => \App\Http\Middleware\PermissionMiddleware::class,
+//        'role' => \App\Http\Middleware\RoleMiddleware::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,

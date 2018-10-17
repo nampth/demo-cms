@@ -13,13 +13,7 @@ use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
 {
-    function __construct()
-    {
-
-    }
-
-    function index(){
-        echo 'dcm';die();
+    public function index(){
         return view('backend.dashboard.index');
     }
 }

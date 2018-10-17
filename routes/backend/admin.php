@@ -8,8 +8,9 @@
 
 use App\Http\Controllers\Backend\DashboardController;
 
+//echo 'vao';die();
 /*
  * All route names are prefixed with 'admin.'.
  */
-//Route::redirect('/', url('/') . '/admin/dashboard', 301);
-//Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+//Route::redirect('/', '/admin/dashboard', 301);
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('index');
