@@ -8,7 +8,7 @@
     <title>Metronic | Dashboard</title>
     <meta name="description" content="Latest updates and statistic charts">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
-
+    <meta id="site_meta" data-url="{{ url('/') }}">
     <!--begin::Web font -->
     <script src="../../../ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
     <script>
@@ -62,6 +62,7 @@
 
 <script src="{{ asset('assets/vendors/base/vendors.bundle.js') }}" type="text/javascript"></script>
 <script src="{{ asset('assets/demo/default/base/scripts.bundle.js') }}" type="text/javascript"></script>
+<script src="{{ url('/') }}/js/app.js" type="module"></script>
 @yield('asset_footer')
 </body>
 </html>
