@@ -12,6 +12,6 @@ trait RolePermissionTrait
 {
     public function permissions()
     {
-        return $this->belongsToMany('App\Models\Permission', 'permission_role', 'permission_id', 'role_id');
+        return $this->belongsTomany('App\Models\Permission', 'permission_role', 'role_id', 'permission_id');
     }
 }

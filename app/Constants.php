@@ -7,3 +7,6 @@
  */
 define('USER_STATUS_ACTIVE', 0);
 define('USER_STATUS_DEACTIVE', 1);
+// permission admin
+define('ADMIN_DASHBOARD', 'admin_dashboard');
+define('ADMIN_USER_MANAGEMENT', 'user_management');

@@ -18,7 +18,6 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (!Auth::check() && !(strpos($request->getRequestUri(), 'login') >= 0)) {
-            echo 'vao'; die();
             return redirect()->route('login');
         }
 

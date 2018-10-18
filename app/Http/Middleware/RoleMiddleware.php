@@ -22,9 +22,10 @@ class RoleMiddleware
         $arrRoles = is_array($roles)
             ? $roles
             : explode('|', $roles);
-        if(auth()->user()->role() && in_array(auth()->user()->role()->first()->name, $arrRoles)){
+        if (auth()->user()->role() && in_array(auth()->user()->role()->first()->name, $arrRoles)) {
             return $next($request);
         }
+
         return redirect()->route('login');
 
     }
