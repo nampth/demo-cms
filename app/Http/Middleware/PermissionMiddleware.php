@@ -11,19 +11,21 @@ namespace App\Http\Middleware;
 
 class PermissionMiddleware
 {
-    public function handle($request, \Closure $next, $permissions){
+    public function handle($request, \Closure $next, $permission)
+    {
+
         if (app('auth')->guest()) {
             return redirect()->route('login');
         }
-        $arrPermissions = is_array($permissions)
-            ? $permissions
-            : explode('|', $permissions);
 
-        foreach ($arrPermissions as $permission) {
-            if (app('auth')->user()->can($permission)) {
-                return $next($request);
-            }
+        $arrPermissions = auth()->user()->role()->first()->permissions()->get()->map(function($item){
+            return $item->name;
+        })->toArray();
+
+        if (in_array($permission, $arrPermissions)) {
+            return $next($request);
         }
+
         return redirect()->route('login');
     }
 }

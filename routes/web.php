@@ -13,7 +13,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 
-Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'as' => 'admin'], function () {
+Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'as' => 'admin', 'middleware'=>'role:admin'], function () {
     include_route_files(__DIR__ . '/backend/');
 });
 

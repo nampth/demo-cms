@@ -46,7 +46,7 @@ class Kernel extends HttpKernel
             'auth',
             'password_expires',
             'permission',
-//            'role'
+            'role'
         ],
     ];
 
@@ -66,7 +66,7 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'password_expires' => \App\Http\Middleware\PasswordExpires::class,
         'permission' => \App\Http\Middleware\PermissionMiddleware::class,
-//        'role' => \App\Http\Middleware\RoleMiddleware::class,
+        'role' => \App\Http\Middleware\RoleMiddleware::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,

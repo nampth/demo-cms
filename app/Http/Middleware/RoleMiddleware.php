@@ -18,16 +18,13 @@ class RoleMiddleware
         if (app('auth')->guest()) {
             return redirect()->route('login');
         }
+
         $arrRoles = is_array($roles)
             ? $roles
             : explode('|', $roles);
-
-        foreach ($arrRoles as $role) {
-            if (auth()->user()->hasRole($arrRoles)) {
-                return $next($request);
-            }
+        if(auth()->user()->role() && in_array(auth()->user()->role()->first()->name, $arrRoles)){
+            return $next($request);
         }
-
         return redirect()->route('login');
 
     }

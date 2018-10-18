@@ -13,4 +13,6 @@ use App\Http\Controllers\Backend\DashboardController;
  * All route names are prefixed with 'admin.'.
  */
 //Route::redirect('/', '/admin/dashboard', 301);
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('index');
+Route::group(['namespace' => 'Dashboard', 'prefix' => 'dashboard', 'as' => 'dashboard', 'middleware'=>'permission:admin_dashboard'], function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('index');
+});
