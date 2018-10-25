@@ -9,8 +9,9 @@
     <meta name="description" content="Latest updates and statistic charts">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
     <meta id="site_meta" data-url="{{ url('/') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!--begin::Web font -->
-    <script src="../../../ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
     <script>
         WebFont.load({
             google: {"families": ["Poppins:300,400,500,600,700", "Roboto:300,400,500,600,700"]},
@@ -25,7 +26,7 @@
     <link href="{{ asset('assets/vendors/base/vendors.bundle.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('assets/demo/default/base/style.bundle.css') }}" rel="stylesheet" type="text/css"/>
     <!--end::Global Theme Styles -->
-
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css"/>
     <!--begin::Page Vendors Styles -->
     <link href="{{ asset('assets/vendors/custom/fullcalendar/fullcalendar.bundle.css') }}" rel="stylesheet"
           type="text/css"/>
@@ -48,7 +49,7 @@
 
         @include('templates.sidebar')
         <div class="m-grid__item m-grid__item--fluid m-wrapper">
-            <div class="m-content">
+            <div class="m-content" id="app">
                 @yield('content')
             </div>
         </div>
@@ -59,10 +60,8 @@
 <div id="m_scroll_top" class="m-scroll-top">
     <i class="la la-arrow-up"></i>
 </div>
-
 <script src="{{ asset('assets/vendors/base/vendors.bundle.js') }}" type="text/javascript"></script>
 <script src="{{ asset('assets/demo/default/base/scripts.bundle.js') }}" type="text/javascript"></script>
-<script src="{{ url('/') }}/js/app.js" type="module"></script>
 @yield('asset_footer')
 </body>
 </html>

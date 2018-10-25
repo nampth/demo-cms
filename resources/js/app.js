@@ -6,6 +6,11 @@
 
 require('./bootstrap');
 require('jquery');
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
 window.Vue = require('vue');
 "use strict";
 /**

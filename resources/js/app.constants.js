@@ -1,1 +1,1 @@
-var baseUrl = jQuery('#site_meta').attr('data-url');
+export const baseUrl = jQuery('#site_meta').attr('data-url');

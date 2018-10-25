@@ -1,5 +1,3 @@
-const mix = require('laravel-mix');
-
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -10,12 +8,12 @@ const mix = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
+let mix = require('laravel-mix');
 
-mix.js('resources/js/app.js', 'public/js').version()
-    .sass('resources/sass/app.scss', 'public/css').version();
-mix.combine([
+mix.js([
+    'resources/js/app.js',
     'resources/js/app.constants.js',
-    'resources/js/pages/admin.users.js',
-], 'public/js/app.js').version()
-
+    'resources/js/pages/admin.users.js'
+], 'public/js').version()
+    .sass('resources/sass/app.scss', 'public/css').version();
 
