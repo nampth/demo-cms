@@ -9,7 +9,7 @@
  |
  */
 let mix = require('laravel-mix');
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
+
 mix.webpackConfig({
     module: {
         loaders: [
@@ -31,11 +31,7 @@ mix.webpackConfig({
                 exclude: /node_modules/
             }
         ]
-    },
-    plugins: [
-        // make sure to include the plugin!
-        new VueLoaderPlugin()
-    ]
+    }
 });
 
 mix.js([

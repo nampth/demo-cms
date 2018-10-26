@@ -56,12 +56,16 @@
                 default: () => []
             }
         },
-        data() {
-            return {}
-        },
+        data: {},
         mounted() {
-
+            alert('dcm');
+        },
+        watch: {
+            roles: function (val) {
+                console.log(val);
+            }
         }
+
 
     }
 </script>

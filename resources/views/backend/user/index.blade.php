@@ -50,10 +50,10 @@
             </div>
         </div>
     </div>
-    {{--<user-modal :id="'user-modal'" :roles="roles" :editing="false"></user-modal>--}}
-    {{--<user-modal :id="'user-modal'" :roles="roles" :editing="false"></user-modal>--}}
+    <user-modal :id="'user-modal'" :roles="roles" :editing="false"></user-modal>
 @endsection
 
 @section('asset_footer')
-    {{--<script src="{{url('/')}}/js/admin.users.js"></script>--}}
+    {{--<script src="{{url('/')}}/js/app.js"></script>--}}
 @endsection
+

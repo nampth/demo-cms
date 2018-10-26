@@ -1,25 +1,23 @@
 require('datatables');
 
-import {UserModal} from '../components/backend/UserModal';
+import Vue from 'vue';
 import {baseUrl} from "../app.constants";
 
-// Vue.component('user-modal', require('../components/backend/UserModal').default);
-alert('vao');
-const app = new Vue({
+Vue.component('user-modal', require('../components/backend/UserModal.vue'));
+
+new Vue({
+    el: '#app',
     data: {
         roles: [],
         userTable: null,
     },
-    components: {
-        'user-modal': UserModal,
-    },
     mounted() {
-        alert('vao 2');
         this.initTableUser();
         this.initListRoles();
     },
     methods: {
         initTableUser: function () {
+            console.log($("#m_user_table"));
             var vm = this;
             if (vm.userTable != null) {
                 vm.userTable.ajax.reload();
@@ -108,5 +106,5 @@ const app = new Vue({
                 }
             })
         }
-    }
+    },
 });
