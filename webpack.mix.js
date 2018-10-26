@@ -9,6 +9,34 @@
  |
  */
 let mix = require('laravel-mix');
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
+mix.webpackConfig({
+    module: {
+        loaders: [
+            {
+                test: /\.js$/,
+                loader: 'babel-loader',
+                query: {
+                    presets: ['es2015']
+                }
+            }
+        ],
+        rules: [
+            {
+                use: {
+                    loader: 'babel-loader',
+                    options: {presets: ['es2015']}
+                },
+                test: /\.js$/,
+                exclude: /node_modules/
+            }
+        ]
+    },
+    plugins: [
+        // make sure to include the plugin!
+        new VueLoaderPlugin()
+    ]
+});
 
 mix.js([
     'resources/js/app.js',
@@ -16,4 +44,3 @@ mix.js([
     'resources/js/pages/admin.users.js'
 ], 'public/js').version()
     .sass('resources/sass/app.scss', 'public/css').version();
-

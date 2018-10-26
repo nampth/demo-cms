@@ -12,7 +12,8 @@
                     <form>
                         <div class="form-group">
                             <label class="form-control-label">Tên người dùng:</label>
-                            <input type="text" class="form-control" id="username" :readonly="!editing">
+                            <input type="text" class="form-control" id="username" v-if="!editing">
+                            <input type="text" class="form-control" id="username" readonly="readonly" v-else>
                         </div>
                         <div class="form-group">
                             <label class="form-control-label">Mật khẩu:</label>
@@ -22,16 +23,16 @@
                             <label class="form-control-label">Nhập lại mật khẩu:</label>
                             <input type="text" class="form-control" id="re_password">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" v-if="roles && roles.length">
                             <label class="form-control-label">Nhóm người dùng:</label>
                             <select>
-                                <!--<option v-for="role in roles" :value="role.id" v-html="role.name"></option>-->
+                                <option v-for="role in roles" :value="role.id" v-html="role.name"></option>
                             </select>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn" data-dismiss="modal">Đóng</button>
                     <button type="button" class="btn btn-primary" v-html="editing ? 'Cập nhật' : 'Thêm'"></button>
                 </div>
             </div>
@@ -41,7 +42,6 @@
 
 <script>
     export default {
-        name: 'UserModal',
         props: {
             id: {
                 type: String,
@@ -53,10 +53,13 @@
             },
             roles: {
                 type: Array,
-                default: []
+                default: () => []
             }
         },
-        data:{
+        data() {
+            return {}
+        },
+        mounted() {
 
         }
 

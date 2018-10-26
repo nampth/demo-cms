@@ -11,6 +11,8 @@ $.ajaxSetup({
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
 });
+import Vue from 'vue';
+
 window.Vue = require('vue');
 "use strict";
 /**
@@ -20,7 +22,6 @@ window.Vue = require('vue');
  */
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
-
 const app = new Vue({
     el: '#app'
 });

@@ -17,7 +17,7 @@
             <div class="m-portlet__head-tools">
                 <ul class="m-portlet__nav">
                     <li class="m-portlet__nav-item">
-                        <a href="#" class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air" data-toggle="modal" data-target="#myModal">
+                        <a href="javascript:;"  class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air" data-toggle="modal" data-target="#user-modal">
 						<span>
 							<i class="la la-plus"></i>
 							<span>Thêm người dùng</span>
@@ -50,9 +50,10 @@
             </div>
         </div>
     </div>
-    <user-modal :id="'user-modal'" :roles="roles" :editing="false"></user-modal>
+    {{--<user-modal :id="'user-modal'" :roles="roles" :editing="false"></user-modal>--}}
+    {{--<user-modal :id="'user-modal'" :roles="roles" :editing="false"></user-modal>--}}
 @endsection
 
 @section('asset_footer')
-    <script src="{{url('/')}}/js/app.js"></script>
+    {{--<script src="{{url('/')}}/js/admin.users.js"></script>--}}
 @endsection

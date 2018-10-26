@@ -1,19 +1,20 @@
-import {baseUrl} from "../app.constants";
-
-// Vue.component('user-modal', "../components/backend/UserModal.vue");
-
 require('datatables');
 
-var app = new Vue({
+import {UserModal} from '../components/backend/UserModal';
+import {baseUrl} from "../app.constants";
+
+// Vue.component('user-modal', require('../components/backend/UserModal').default);
+alert('vao');
+const app = new Vue({
     data: {
         roles: [],
         userTable: null,
-        baseUrl: baseUrl
     },
     components: {
-        'user-modal': UserModal
+        'user-modal': UserModal,
     },
     mounted() {
+        alert('vao 2');
         this.initTableUser();
         this.initListRoles();
     },
@@ -28,7 +29,7 @@ var app = new Vue({
                     "processing": true,
                     "serverSide": true,
                     "ajax": {
-                        "url": vm.baseUrl + "/admin/user/listing",
+                        "url": baseUrl + "/admin/user/listing",
                         "type": "POST"
                     },
                     "language": {
@@ -90,7 +91,22 @@ var app = new Vue({
             });
         },
         initListRoles: function () {
-            this.roles = [];
+            var vm = this;
+            vm.roles = [];
+            $.ajax({
+                "url": baseUrl + "/admin/role/listingAll",
+                "method": "POST",
+                "success": function (response) {
+                    if (response && response.data) {
+                        vm.roles = response.data;
+                    } else {
+                        vm.roles = [];
+                    }
+                },
+                "error": function () {
+                    vm.roles = [];
+                }
+            })
         }
     }
 });

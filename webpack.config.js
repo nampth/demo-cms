@@ -1,3 +1,4 @@
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 module.exports = {
     module: {
         rules: [
@@ -14,8 +15,24 @@ module.exports = {
                 }
             }
         ],
+        resolve: {
+            extensions: ['.js'],
+            alias: {
+                'vue': 'vue/dist/vue.common.js'
+            }
+        },
     },
     plugins: [
-
+        // make sure to include the plugin!
+        new VueLoaderPlugin()
     ]
 };
+
+module.exports = {
+    // ...
+    resolve: {
+        alias: {
+            'vue$': 'vue/dist/vue.esm.js' // 'vue/dist/vue.common.js' for webpack 1
+        }
+    }
+}
