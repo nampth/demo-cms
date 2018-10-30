@@ -39,7 +39,8 @@
         "datatables": "^1.10.18",
         "datatables.net": "^1.10.19",
         "datatables.net-dt": "^1.10.19",
-        "laravel-mix": "^2.1.14"
+        "laravel-mix": "^2.1.14",
+        "vue-router": "^3.0.1"
     },
     "babel": {
         "presets": []

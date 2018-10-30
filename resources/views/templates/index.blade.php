@@ -62,10 +62,13 @@
 <div id="m_scroll_top" class="m-scroll-top">
     <i class="la la-arrow-up"></i>
 </div>
+<script src="{{ url('/') }}/js/manifest.js" type="text/javascript"></script>
+<script src="{{ url('/') }}/js/vendor.js" type="text/javascript"></script>
 <script src="{{ asset('assets/vendors/base/vendors.bundle.js') }}" type="text/javascript"></script>
 <script src="{{ asset('assets/demo/default/base/scripts.bundle.js') }}" type="text/javascript"></script>
 <script src="{{ url('/') }}/js/app.js" type="text/javascript"></script>
-<script src="{{ url('/') }}/js/app.constants.js" type="text/javascript"></script>
+
+{{--<script src="{{ url('/') }}/js/manifest.js" type="text/javascript"></script>--}}
 @yield('asset_footer')
 </body>
 </html>

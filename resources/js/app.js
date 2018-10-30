@@ -25,3 +25,34 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
 const app = new Vue({
     el: '#app'
 });
+
+//
+// require('./bootstrap');
+// require('jquery');
+//
+// import VueRouter from 'vue-router';
+//
+// import UserModal from './components/backend/UserModal.vue';
+//
+// $.ajaxSetup({
+//     headers: {
+//         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//     }
+// });
+//
+// window.Vue = require('vue');
+// window.Vue.use(VueRouter);
+//
+// const routes = [
+//     {
+//         path: '/js/components/backend/',
+//         components: {
+//             companiesIndex: UserModal
+//         },
+//         name: 'UserModal'
+//     },
+// ]
+//
+// const router = new VueRouter({routes})
+//
+// const app = new Vue({router}).$mount('#app')

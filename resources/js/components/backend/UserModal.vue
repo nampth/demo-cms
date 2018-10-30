@@ -42,6 +42,7 @@
 
 <script>
     export default {
+        // name: 'user-modal',
         props: {
             id: {
                 type: String,
@@ -58,14 +59,12 @@
         },
         data: {},
         mounted() {
-            alert('dcm');
+
         },
         watch: {
             roles: function (val) {
                 console.log(val);
             }
         }
-
-
     }
 </script>

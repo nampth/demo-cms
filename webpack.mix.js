@@ -40,3 +40,6 @@ mix.js([
     'resources/js/pages/admin.users.js'
 ], 'public/js').version()
     .sass('resources/sass/app.scss', 'public/css').version();
+
+// mix.js('resources/js/pages/admin.users.js', 'public/js')
+//     .extract(['vue']);

@@ -5,7 +5,7 @@ import {baseUrl} from "../app.constants";
 
 Vue.component('user-modal', require('../components/backend/UserModal.vue'));
 
-new Vue({
+var app = new Vue({
     el: '#app',
     data: {
         roles: [],
@@ -17,7 +17,6 @@ new Vue({
     },
     methods: {
         initTableUser: function () {
-            console.log($("#m_user_table"));
             var vm = this;
             if (vm.userTable != null) {
                 vm.userTable.ajax.reload();
