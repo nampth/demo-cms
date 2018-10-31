@@ -27,7 +27,7 @@
         "mini-css-extract-plugin": "^0.4.4",
         "popper.js": "^1.12",
         "vue": "^2.5.17",
-        "vue-loader": "^14.2.2",
+        "vue-loader": "^12.2.2",
         "vue-resource": "^1.5.1",
         "vue-template-compiler": "^2.5.17",
         "webpack": "^3.12.0",

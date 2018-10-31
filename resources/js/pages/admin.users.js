@@ -1,17 +1,24 @@
 require('datatables');
 
-import Vue from 'vue';
+// import Vue from 'vue';
+// window.Vue = require('vue');
+
 import {baseUrl} from "../app.constants";
 
 Vue.component('user-modal', require('../components/backend/UserModal.vue'));
-
 var app = new Vue({
     el: '#app',
     data: {
         roles: [],
         userTable: null,
+        editingUser: {
+            username: null,
+            password: null,
+            re_password: null
+        },
     },
     mounted() {
+        // alert(this.test);
         this.initTableUser();
         this.initListRoles();
     },
@@ -89,7 +96,6 @@ var app = new Vue({
         },
         initListRoles: function () {
             var vm = this;
-            vm.roles = [];
             $.ajax({
                 "url": baseUrl + "/admin/role/listingAll",
                 "method": "POST",

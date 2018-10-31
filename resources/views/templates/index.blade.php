@@ -32,6 +32,11 @@
           type="text/css"/>
     <!--end::Page Vendors Styles -->
     <link rel="shortcut icon" href="assets/demo/default/media/img/logo/favicon.ico"/>
+    <script src="{{ asset('/js/manifest.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('/js/vendor.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/vendors/base/vendors.bundle.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/demo/default/base/scripts.bundle.js') }}" type="text/javascript"></script>
+
     @yield('asset_header')
 </head>
 
@@ -50,25 +55,20 @@
         @include('templates.sidebar')
         <div class="m-grid__item m-grid__item--fluid m-wrapper">
             <div class="m-content" id="app">
-                <template>
-                    @yield('content')
-                </template>
+                {{--<template>--}}
+                @yield('content')
+                {{--</template>--}}
             </div>
         </div>
     </div>
+    <script src="{{ asset('/js/app.js') }}" type="text/javascript"></script>
 @include('templates.footer')
 <!-- end::Footer -->
 </div>
+
 <div id="m_scroll_top" class="m-scroll-top">
     <i class="la la-arrow-up"></i>
 </div>
-<script src="{{ url('/') }}/js/manifest.js" type="text/javascript"></script>
-<script src="{{ url('/') }}/js/vendor.js" type="text/javascript"></script>
-<script src="{{ asset('assets/vendors/base/vendors.bundle.js') }}" type="text/javascript"></script>
-<script src="{{ asset('assets/demo/default/base/scripts.bundle.js') }}" type="text/javascript"></script>
-<script src="{{ url('/') }}/js/app.js" type="text/javascript"></script>
-
-{{--<script src="{{ url('/') }}/js/manifest.js" type="text/javascript"></script>--}}
 @yield('asset_footer')
 </body>
 </html>
