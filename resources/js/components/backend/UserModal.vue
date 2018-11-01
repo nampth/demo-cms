@@ -13,17 +13,24 @@
                         <div class="form-group">
                             <label class="form-control-label">Tên người dùng:</label>
                             <input type="text" class="form-control" id="username" v-if="!editing"
+                                   v-validate="'required|min:6|max:32'" name="username"
+                                   data-vv-as="Tên đăng nhập"
                                    v-model="user.username">
-                            <input type="text" class="form-control" id="username" readonly="readonly"
-                                   v-model="user.username" v-else>
+                            <input type="text" class="form-control" id="username" readonly="readonly" name="username"
+                                   v-model="user.username" v-else data-vv-as="Tên đăng nhập">
+                            <span v-show="!editing && errors.has('username')" class="text-danger">{{ errors.first('username') }}</span>
                         </div>
                         <div class="form-group">
                             <label class="form-control-label">Mật khẩu:</label>
-                            <input type="password" class="form-control" id="password" v-model="user.password">
+                            <input type="password" class="form-control" id="password" name="password"
+                                   v-validate="'required|min:8|max:100'" v-model="user.password">
+                            <span v-show="!editing && errors.has('password')" class="text-danger">{{ errors.first('password') }}</span>
                         </div>
                         <div class="form-group">
                             <label class="form-control-label">Nhập lại mật khẩu:</label>
-                            <input type="password" class="form-control" id="re_password" v-model="user.re_password">
+                            <input type="password" class="form-control" id="re_password" name="re_password"
+                                   v-validate="'required|min:8|max:100|confirmed:password'" v-model="user.re_password">
+                            <span v-show="!editing && errors.has('re_password')" class="text-danger">{{ errors.first('re_password') }}</span>
                         </div>
                         <div class="form-group" v-if="roles && roles.length">
                             <label class="form-control-label">Nhóm người dùng:</label>
@@ -36,7 +43,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn" data-dismiss="modal">Đóng</button>
                     <button type="button" class="btn btn-primary" v-html="editing ? 'Cập nhật' : 'Thêm'"
-                            @click="editing ? updateUser() : addUser()"></button>
+                            @click="submitForm()"></button>
                 </div>
             </div>
         </div>
@@ -44,6 +51,36 @@
 </template>
 
 <script>
+    import Vue from 'vue';
+    import {baseUrl} from "../../app.constants";
+    import VeeValidate, {Validator} from 'vee-validate';
+
+    Validator.localize({
+        en: {
+            custom: {
+                username: {
+                    required: 'Vui lòng nhập đủ thông tin',
+                    min: 'Tên đăng nhập tối thiểu 6 ký tự',
+                    max: 'Tên đăng nhập tối đa 32 ký tự',
+                    regex: 'Tên đăng nhập chỉ gồm ký tự số, chữ thường, chữ hoa và @ hoặc _',
+                },
+                password: {
+                    required: 'Vui lòng nhập đủ thông tin',
+                    min: 'Mật khẩu tối thiểu 8 ký tự',
+                    max: 'Mật khẩu tối đa 100 ký tự',
+                },
+                re_password: {
+                    required: 'Vui lòng nhập đủ thông tin',
+                    min: 'Mật khẩu tối thiểu 8 ký tự',
+                    max: 'Mật khẩu tối đa 100 ký tự',
+                    confirmed: 'Mật khẩu không trùng khớp',
+                },
+            }
+        }
+    })
+
+    Vue.use(VeeValidate);
+
     export default {
         // name: 'user-modal',
         props: {
@@ -71,10 +108,45 @@
 
         },
         methods: {
-            addUser() {
+            submitForm() {
+                var vm = this;
+                vm.$validator.validateAll().then(res => {
+                    if (res) {
+                        var url = baseUrl + '/users/add';
+                        if (vm.editing) {
+                            url = baseUrl + '/users/edit';
+                        }
+                        var data = vm.user;
+                        data.role = vm.selectedRole;
+                        $.ajax({
+                            type: "POST",
+                            url: url,
+                            data: data, // serializes the form's elements.
+                            success: function (data) {
+                                if (data && data.status) {
+                                    toastr.success('Thêm người dùng thành công')
+                                } else {
+                                    toastr.error("Có lỗi xảy ra, vui lòng thử lại sau.");
+                                }
+                                $('#' + vm.id).modal('hide');
 
-            },
-            updateUser() {
+                            },
+                            error: function (error) {
+                                if (error && error.responseJSON) {
+                                    error = error.responseJSON;
+                                    $.each(error.errors, function (key, value) {
+                                        toastr.error(decodeURI(value));
+                                    });
+                                } else {
+                                    toastr.error("Có lỗi xảy ra, vui lòng thử lại sau.");
+                                }
+                                $('#' + vm.id).modal('hide');
+                            }
+                        });
+                    } else {
+                        toastr.error("Vui lòng nhập đầy đủ thông tin.");
+                    }
+                })
 
             }
         },

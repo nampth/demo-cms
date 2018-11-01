@@ -1,7 +1,6 @@
 @extends('templates.index')
 
 @section('asset_header')
-    {{--<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">--}}
 @endsection
 
 @section('content')
@@ -32,25 +31,26 @@
         </div>
         <div class="m-portlet__body">
             <!--begin: Datatable -->
-            <div id="m_table_1_wrapper" class="dataTables_wrapper no-footer">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <table class="m-table table-striped table-hover dataTable no-footer" id="m_user_table"
-                               style="width: 1150px;">
-                            <thead>
-                            <tr>
-                                <td>#</td>
-                                <td>Tên tài khoản</td>
-                                <td>Nhóm người dùng</td>
-                                <td>Đang hoạt động</td>
-                                <td>Hành động</td>
-                            </tr>
-                            </thead>
-                        </table>
-                    </div>
-                </div>
+            {{--<div id="m_table_1_wrapper" class="dataTables_wrapper no-footer">--}}
+            {{--<div class="row">--}}
+            {{--<div class="col-sm-12">--}}
+            <table class="table table-striped table-bordered table-hover table-checkable no-foote"
+                   id="m_user_table"
+                   style="width: 1150px;">
+                <thead>
+                <tr>
+                    <td>#</td>
+                    <td>Tên tài khoản</td>
+                    <td>Nhóm người dùng</td>
+                    <td>Đang hoạt động</td>
+                    <td>Hành động</td>
+                </tr>
+                </thead>
+            </table>
+            {{--</div>--}}
+            {{--</div>--}}
 
-            </div>
+            {{--</div>--}}
         </div>
     </div>
     <user-modal :id="'user-modal'" :roles="roles" :editing="false" :user="editingUser"></user-modal>

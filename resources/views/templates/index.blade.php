@@ -36,6 +36,7 @@
     <script src="{{ asset('/js/vendor.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/vendors/base/vendors.bundle.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/demo/default/base/scripts.bundle.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/demo/default/custom/components/base/toastr.js') }}" type="text/javascript"></script>
 
     @yield('asset_header')
 </head>
@@ -62,6 +63,8 @@
         </div>
     </div>
     <script src="{{ asset('/js/app.js') }}" type="text/javascript"></script>
+
+
 @include('templates.footer')
 <!-- end::Footer -->
 </div>

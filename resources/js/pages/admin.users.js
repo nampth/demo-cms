@@ -73,7 +73,13 @@ var app = new Vue({
                             orderable: false,
                             className: 'text-center',
                             render: function (data, type, row) {
-                                return Number.parseInt(data) == 0 ? '<input type="checkbox" class="change-user-status" name="status" checked="checked">' : '<input class="change-user-status" type="checkbox" name="status">';
+                                var html = '';
+                                html += '<label class="m-checkbox m-checkbox--single m-checkbox--solid m-checkbox--brand">';
+                                html += Number.parseInt(data) == 0 ? '<input type="checkbox" value="" name="status" class="m-checkable change-user-status" checked="checked">'
+                                    : '<input type="checkbox" value="" name="status" class="m-checkable change-user-status">';
+                                html += '<span></span>';
+                                html += '</label>';
+                                return html;
                             }
                         },
                         {
@@ -92,6 +98,10 @@ var app = new Vue({
                 vm.userTable.column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {
                     cell.innerHTML = i + 1;
                 });
+            });
+            $('select').select2({
+                width: '60px',
+                minimumResultsForSearch: -1
             });
         },
         initListRoles: function () {
