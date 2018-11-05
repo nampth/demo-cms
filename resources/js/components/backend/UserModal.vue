@@ -1,5 +1,6 @@
 <template>
-    <div class="modal fade" :id="id" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
+    <div class="modal fade" :id="id" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true"
+         ref="userModal">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -20,24 +21,37 @@
                                    v-model="user.username" v-else data-vv-as="Tên đăng nhập">
                             <span v-show="!editing && errors.has('username')" class="text-danger">{{ errors.first('username') }}</span>
                         </div>
-                        <div class="form-group">
-                            <label class="form-control-label">Mật khẩu:</label>
-                            <input type="password" class="form-control" id="password" name="password"
-                                   v-validate="'required|min:8|max:100'" v-model="user.password">
-                            <span v-show="!editing && errors.has('password')" class="text-danger">{{ errors.first('password') }}</span>
+                        <div class="form-group" v-if="editing">
+                            <label class="form-control-label">Giữ nguyên mật khẩu</label>
+                            <label class="m--margin-bottom-0 m--margin-left-5 m-checkbox m-checkbox--single m-checkbox--solid m-checkbox--brand">
+                                <input type="checkbox" value="" name="status" class="m-checkable" checked="checked"
+                                       @change="keepPassword = !keepPassword">
+                                <span></span>
+                            </label>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" v-if="!editing || !keepPassword">
+                            <label class="form-control-label">Mật khẩu:</label>
+                            <input type="password" class="form-control" id="password" name="password" ref="password"
+                                   data-vv-as="Mật khẩu" v-validate="'required|min:8|max:100'" v-model="user.password">
+                            <span v-show="errors.has('password')"
+                                  class="text-danger">{{ errors.first('password') }}</span>
+                        </div>
+                        <div class="form-group" v-if="!editing || !keepPassword">
                             <label class="form-control-label">Nhập lại mật khẩu:</label>
                             <input type="password" class="form-control" id="re_password" name="re_password"
+                                   data-vv-as="Nhập lại mật khẩu"
                                    v-validate="'required|min:8|max:100|confirmed:password'" v-model="user.re_password">
-                            <span v-show="!editing && errors.has('re_password')" class="text-danger">{{ errors.first('re_password') }}</span>
+                            <span v-show="errors.has('re_password')" class="text-danger">{{ errors.first('re_password') }}</span>
                         </div>
-                        <div class="form-group" v-if="roles && roles.length">
+                        <div class="form-group m--margin-bottom-0" v-if="roles && roles.length">
                             <label class="form-control-label">Nhóm người dùng:</label>
-                            <select v-model="selectedRole">
+                            <select name="role" v-validate="'required'" ref="slRole"
+                                    id="slRole">
                                 <option v-for="role in roles" :value="role.id" v-html="role.name"></option>
                             </select>
                         </div>
+                        <span v-if="submiting && !selectedRole"
+                              class="text-danger">Vui lòng chọn nhóm người dùng</span>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -52,7 +66,7 @@
 
 <script>
     import Vue from 'vue';
-    import {baseUrl} from "../../app.constants";
+    import {baseUrl, SUCCESS_CODE} from "../../app.constants";
     import VeeValidate, {Validator} from 'vee-validate';
 
     Validator.localize({
@@ -99,22 +113,33 @@
             user: {
                 type: Object,
                 default: {}
+            },
+            selectedRole: {
+                type: Number,
+                default: null
             }
         },
-        data: {
-            selectedRole: null
+        data: function () {
+            return {
+                submiting: false,
+                keepPassword: true
+            }
         },
         mounted() {
-
+            this.handleHideModal();
+            this.handleShowModal();
         },
         methods: {
             submitForm() {
                 var vm = this;
+                vm.submiting = true;
+
                 vm.$validator.validateAll().then(res => {
-                    if (res) {
-                        var url = baseUrl + '/users/add';
+                    if (res && vm.selectedRole) {
+                        vm.submiting = false;
+                        var url = baseUrl + '/admin/user/add';
                         if (vm.editing) {
-                            url = baseUrl + '/users/edit';
+                            url = baseUrl + '/admin/user/update';
                         }
                         var data = vm.user;
                         data.role = vm.selectedRole;
@@ -123,8 +148,9 @@
                             url: url,
                             data: data, // serializes the form's elements.
                             success: function (data) {
-                                if (data && data.status) {
-                                    toastr.success('Thêm người dùng thành công')
+                                if (data && data.code == SUCCESS_CODE) {
+                                    toastr.success(vm.editing ? 'Cập nhật người dùng thành công' : 'Thêm người dùng thành công');
+                                    vm.$emit('reload');
                                 } else {
                                     toastr.error("Có lỗi xảy ra, vui lòng thử lại sau.");
                                 }
@@ -148,15 +174,40 @@
                     }
                 })
 
+            },
+            handleHideModal() {
+                var vm = this;
+                $(vm.$refs.userModal).on('hidden.bs.modal', function () {
+                    vm.submiting = false;
+                    vm.$emit('hide');
+                    setTimeout(function () {
+                        vm.errors.clear();
+                    }, 100);
+
+                })
+            },
+            handleShowModal() {
+                var vm = this;
+                $(vm.$refs.userModal).on('show.bs.modal', function () {
+                    if ($('#slRole').select2()) {
+                        $('#slRole').select2('destroy');
+                    }
+                    $('#slRole').select2({
+                        width: '100%',
+                        minimumResultsForSearch: -1
+                    }).change(function () {
+                        vm.selectedRole = $(this).val();
+                    });
+                    if (!vm.editing && vm.roles) {
+                       vm.$emit('role');
+                    }
+                    if (vm.editing && vm.selectedRole) {
+                        $('#slRole').val(vm.selectedRole).trigger('change');
+                    }
+                })
+
             }
         },
-        watch: {
-            roles: function (val) {
-                if (val && val.length) {
-                    console.log(val);
-                    this.selectedRole = val[0];
-                }
-            }
-        }
+        watch: {}
     }
 </script>

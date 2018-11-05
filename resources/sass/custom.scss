@@ -1,0 +1,56 @@
+.paginate_button {
+  border-radius: 50%;
+  cursor: pointer;
+  display: inline-block !important;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  vertical-align: middle;
+  height: 2.25rem;
+  min-width: 2.25rem;
+  vertical-align: middle;
+  padding: 0.5rem;
+  text-align: center;
+  position: relative;
+  font-size: 1rem;
+  line-height: 1rem;
+  font-weight: 400;
+}
+
+.paginate_button.current {
+  background: #716aca;
+  color: #fff;
+}
+
+.table-action-icon {
+  padding: 5px;
+}
+
+.select2-selection__arrow:before {
+  content: "\25be" !important;
+  float: right;
+  color: #000000;
+  font-size: 16px;
+  padding-right: 5px;
+}
+
+.select2-selection__rendered {
+  height: 30px;
+  margin-bottom: 4px;
+  margin-top: -3px;
+}
+
+.m--margin-bottom-0 {
+  margin-bottom: 0px !important;
+}

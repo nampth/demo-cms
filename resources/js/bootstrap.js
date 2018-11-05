@@ -13,7 +13,9 @@ try {
     require('bootstrap');
 } catch (e) {
 }
-window.select2 = require('select2');
+// window.block = require('block-ui');
+// window.selectpicker  = require('bootstrap-select');
+// window.mDatatable = require('../../public/assets/vendors/custom/datatables/datatable.js');
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the

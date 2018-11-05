@@ -23,8 +23,14 @@
     <!--end::Web font -->
 
     <!--begin::Global Theme Styles -->
+    <link rel="stylesheet"
+          href="http://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700%7CRoboto:300,400,500,600,700"
+          media="all">
     <link href="{{ asset('assets/vendors/base/vendors.bundle.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('assets/demo/default/base/style.bundle.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('assets/vendors/custom/datatables/datatables.bundle.css') }}" rel="stylesheet"
+          type="text/css"/>
+
     <!--end::Global Theme Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css"/>
     <!--begin::Page Vendors Styles -->
@@ -37,7 +43,6 @@
     <script src="{{ asset('assets/vendors/base/vendors.bundle.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/demo/default/base/scripts.bundle.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/demo/default/custom/components/base/toastr.js') }}" type="text/javascript"></script>
-
     @yield('asset_header')
 </head>
 
@@ -72,6 +77,8 @@
 <div id="m_scroll_top" class="m-scroll-top">
     <i class="la la-arrow-up"></i>
 </div>
+
+
 @yield('asset_footer')
 </body>
 </html>

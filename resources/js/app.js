@@ -11,9 +11,10 @@ $.ajaxSetup({
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
 });
-import Vue from 'vue';
 
+window.select2 = require('select2');
 window.Vue = require('vue');
+window.bootbox = require('bootbox');
 "use strict";
 
 toastr.options = {

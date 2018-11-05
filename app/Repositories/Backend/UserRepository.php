@@ -9,6 +9,7 @@
 namespace App\Repositories\Backend;
 
 use App\Repositories\BaseRepository;
+use App\Models\Role;
 use App\User;
 
 class UserRepository extends BaseRepository
@@ -28,17 +29,65 @@ class UserRepository extends BaseRepository
     {
         $query = $this->model->with('role');
         if ($keyword) {
-            $query = $query->where('username', 'LIKE', "%$keyword%")
-                ->orWhere('email', 'LIKE', "%$keyword%");
+            $query = $query->where('username', 'LIKE', "%$keyword%");
         }
 
         $query = $query->limit($length)->offset($start);
         if ($orderBy) {
             $query = $query->orderBy($orderBy, $orderType);
         }
+
         if ($countAll) {
             return $query->count();
         }
         return $query->get();
+    }
+
+    public function add($username, $password, $roleId)
+    {
+        $role = Role::find($roleId);
+        if (!$role) {
+            return false;
+        }
+        $user = new User();
+        $user->username = $username;
+        $user->password = bcrypt($password);
+        $user->status = USER_STATUS_ACTIVE;
+        if (!$user->save()) {
+            return false;
+        }
+        $user->role()->attach($role);
+        return true;
+    }
+
+    public function status($id)
+    {
+        $user = User::find($id);
+        $user->status = 1 - intval($user->status);
+        return $user->save();
+    }
+
+    public function deleteUser($id)
+    {
+        $user = User::find($id);
+        if($user->username != 'nampth'){
+            return $user->delete();
+        }
+        return false;
+
+    }
+
+    public function edit($id, $password, $role)
+    {
+        $user = User::find($id);
+        if ($password) {
+            $user->password = bcrypt($password);
+        }
+
+        if (!$user->save()) {
+            return false;
+        }
+        $user->role()->attach($role);
+        return true;
     }
 }

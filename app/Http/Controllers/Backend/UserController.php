@@ -10,6 +10,8 @@ namespace App\Http\Controllers\Backend;
 
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AddUserRequest;
+use App\Http\Requests\EditUserRequest;
 use App\Repositories\Backend\UserRepository;
 use Illuminate\Http\Request;
 
@@ -17,16 +19,19 @@ class UserController extends Controller
 {
 
     protected $repo;
+
     public function __construct(UserRepository $userRepository)
     {
-        $this->repo  = $userRepository;
+        $this->repo = $userRepository;
     }
 
-    public function index(){
+    public function index()
+    {
         return view('backend.user.index');
     }
 
-    public function listing(Request $request){
+    public function listing(Request $request)
+    {
         $draw = $request->input('draw');
         $start = $request->input('start');
         $length = $request->input('length');
@@ -39,12 +44,46 @@ class UserController extends Controller
         $orderBy = $columns[$order[0]['column']]['data'];
         $orderType = $order[0]['dir'];
 
-
         return response()->json([
             'draw' => $draw,
             'data' => $this->repo->listing($keyword, $start, $length, $orderBy, $orderType, false),
             'recordsFiltered' => $this->repo->listing($keyword, $start, $length, $orderBy, $orderType, true),
             'recordsTotal' => $this->repo->listing('', $start, $length, $orderBy, $orderType, true),
+        ]);
+    }
+
+    public function add(AddUserRequest $request)
+    {
+        return response()->json([
+            'code' => $this->repo->add($request->input('username'), $request->input('password'), $request->input('role')) ? SUCCESS_CODE : ERROR_CODE
+        ]);
+    }
+
+    public function status($id)
+    {
+        $result = $this->repo->status($id);
+        return response()->json([
+            'code' => $result ? SUCCESS_CODE : ERROR_CODE,
+        ]);
+    }
+
+    public function update(EditUserRequest $request)
+    {
+        $result = $this->repo->edit(
+            $request->input('id'),
+            $request->input('password'),
+            $request->input('role')
+        );
+        return response()->json([
+            'code' => $result ? SUCCESS_CODE : ERROR_CODE,
+        ]);
+    }
+
+    public function delete($id)
+    {
+        $result = $this->repo->deleteUser($id);
+        return response()->json([
+            'code' => $result ? SUCCESS_CODE : ERROR_CODE,
         ]);
     }
 }

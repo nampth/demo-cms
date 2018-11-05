@@ -18,7 +18,7 @@
                     <li class="m-portlet__nav-item">
                         <a href="javascript:;"
                            class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air"
-                           data-toggle="modal" data-target="#user-modal">
+                           @click="showModal">
 						<span>
 							<i class="la la-plus"></i>
 							<span>Thêm người dùng</span>
@@ -30,30 +30,11 @@
             </div>
         </div>
         <div class="m-portlet__body">
-            <!--begin: Datatable -->
-            {{--<div id="m_table_1_wrapper" class="dataTables_wrapper no-footer">--}}
-            {{--<div class="row">--}}
-            {{--<div class="col-sm-12">--}}
-            <table class="table table-striped table-bordered table-hover table-checkable no-foote"
-                   id="m_user_table"
-                   style="width: 1150px;">
-                <thead>
-                <tr>
-                    <td>#</td>
-                    <td>Tên tài khoản</td>
-                    <td>Nhóm người dùng</td>
-                    <td>Đang hoạt động</td>
-                    <td>Hành động</td>
-                </tr>
-                </thead>
-            </table>
-            {{--</div>--}}
-            {{--</div>--}}
-
-            {{--</div>--}}
+            @include('backend.user.partitals.table')
         </div>
     </div>
-    <user-modal :id="'user-modal'" :roles="roles" :editing="false" :user="editingUser"></user-modal>
+    <user-modal :id="'user-modal'" :roles="roles" :editing="isEditing" :user="editingUser" :selected-role="selectedRole"
+                @hide="resetUser" @reload="initTableUser" @role="setDefaultRole"></user-modal>
 @endsection
 
 @section('asset_footer')
