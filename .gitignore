@@ -12,3 +12,5 @@ npm-debug.log
 yarn-error.log
 .env
 .phpunit.result.cache
+/app/Http/*.php___jb_tmp___
+/app/Http/Middleware/*.php___jb_tmp___

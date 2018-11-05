@@ -63,14 +63,17 @@ class UserRepository extends BaseRepository
     public function status($id)
     {
         $user = User::find($id);
-        $user->status = 1 - intval($user->status);
-        return $user->save();
+        if ($user->username != 'nampth') {
+            $user->status = 1 - intval($user->status);
+            return $user->save();
+        }
+        return false;
     }
 
     public function deleteUser($id)
     {
         $user = User::find($id);
-        if($user->username != 'nampth'){
+        if ($user->username != 'nampth') {
             return $user->delete();
         }
         return false;
