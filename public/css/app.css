@@ -10523,6 +10523,10 @@ a.text-dark:focus {
   margin-bottom: 0px !important;
 }
 
+.modal .modal-content .modal-header .close:before {
+  content: "\D7" !important;
+}
+
 .navbar-laravel {
   background-color: #fff;
   -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);

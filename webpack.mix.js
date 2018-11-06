@@ -40,6 +40,7 @@ mix.js([
 ], 'public/js')
     .js('resources/js/pages/admin.users.js', 'public/js/admin.users.js')
     .js('resources/js/pages/admin.roles.js', 'public/js/admin.roles.js')
+    .js('resources/js/pages/admin.permissions.js', 'public/js/admin.permissions.js')
     .extract(['vue']).version()
     .sass('resources/sass/app.scss', 'public/css').version();
 //

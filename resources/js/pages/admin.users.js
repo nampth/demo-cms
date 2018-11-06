@@ -37,6 +37,7 @@ var app = new Vue({
             this.selectedRole = null;
         },
         showModal() {
+            this.initListRoles();
             $('#user-modal').modal('show');
         },
         setDefaultRole() {

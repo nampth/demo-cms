@@ -46,6 +46,18 @@
                     </a>
                 </li>
             @endif
+                @if(checkSidebar(ADMIN_PERMISSION_MANAGEMENT))
+                    <li class="m-menu__item  {{ setActiveMenu(route('admin.permission.index')) }}" aria-haspopup="true">
+                        <a href="{{ route('admin.permission.index') }}" class="m-menu__link ">
+                            <i class="m-menu__link-icon la la-ban"></i>
+                            <span class="m-menu__link-title">
+                        <span class="m-menu__link-wrap">
+                            <span class="m-menu__link-text">Quản trị quyền người dùng</span>
+                        </span>
+                    </span>
+                        </a>
+                    </li>
+                @endif
         </ul>
     </div>
     <!-- END: Aside Menu -->

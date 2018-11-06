@@ -2,43 +2,40 @@ require('datatables');
 
 import {baseUrl, SUCCESS_CODE, USER_ACTIVE_STATUS} from "../app.constants";
 
-Vue.component('role-modal', require('../components/backend/RoleModal.vue'));
+Vue.component('permission-modal', require('../components/backend/PermissionModal.vue'));
 var app = new Vue({
     el: '#app',
     data: function () {
         return {
             permissions: [],
-            roleTable: null,
+            permissionTable: null,
             isEditing: false,
-            editingRole: {
+            editingPermission: {
                 name: null,
                 description: null,
-                permissions: []
             }
         }
     },
     mounted() {
-        this.initTableRole();
-        this.initListPermissions();
+        this.initTablePermission();
         this.handleTableActionClick();
     },
     methods: {
         showModal() {
-            this.initListPermissions();
-            $('#role-modal').modal('show');
+            $('#permission-modal').modal('show');
         },
-        initTableRole: function () {
+        initTablePermission: function () {
             var vm = this;
-            if (vm.roleTable != null) {
-                vm.roleTable.ajax.reload();
+            if (vm.permissionTable != null) {
+                vm.permissionTable.ajax.reload();
             } else {
-                vm.roleTable = $('#m_role_table').DataTable(
+                vm.permissionTable = $('#m_permission_table').DataTable(
                     {
                         "dom": "<'row'<'col-sm-6'l><'col-sm-12 col-md-6'f >><'row'<'col-sm-12'tr>><'row'<'col-sm-5'i><'col-sm-7'p>>",
                         "processing": true,
                         "serverSide": true,
                         "ajax": {
-                            "url": baseUrl + "/admin/role/listing",
+                            "url": baseUrl + "/admin/permission/listing",
                             "type": "POST"
                         },
                         "filterInput": "form-control",
@@ -73,27 +70,23 @@ var app = new Vue({
                                 orderable: false,
                             },
                             {
-                                data: 'default_redirect',
-                                orderable: false,
-                            },
-                            {
                                 data: null,
                                 orderable: false,
                                 className: 'text-center',
                                 render: function (data, type, row) {
-                                    return '<a href="javascript:;" class="table-action-icon text-primary edit-role" data-id="' + row['id'] + '"><i class="fa fa-pencil-alt"></i></a>'
-                                        + '<a href="javascript:;" class="table-action-icon text-danger delete-role" data-id="' + row['id'] + '"><i class="fa fa-trash-alt"></i></a>';
+                                    return '<a href="javascript:;" class="table-action-icon text-primary edit-permission" data-id="' + row['id'] + '"><i class="fa fa-pencil-alt"></i></a>'
+                                        + '<a href="javascript:;" class="table-action-icon text-danger delete-permission" data-id="' + row['id'] + '"><i class="fa fa-trash-alt"></i></a>';
                                 }
                             },
                         ]
                     }
                 );
             }
-            vm.roleTable.on('draw.dt search.dt order.dt', function () {
-                vm.roleTable.column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {
+            vm.permissionTable.on('draw.dt search.dt order.dt', function () {
+                vm.permissionTable.column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {
                     cell.innerHTML = i + 1;
                 });
-                $('#m_role_table_filter input').addClass('form-control m-input m-input--square');
+                $('#m_permission_table_filter input').addClass('form-control m-input m-input--square');
             });
             $('select').select2({
                 width: '60px',
@@ -118,29 +111,27 @@ var app = new Vue({
             })
         },
         resetModal() {
-            this.editingRole = {
+            this.editingPermission = {
                 name: null,
                 description: null,
-                redirect: null,
-                permissions: null
             };
             this.isEditing = false;
         },
         handleTableActionClick() {
             var vm = this;
-            $(document).on('click', '.delete-role', function () {
+            $(document).on('click', '.delete-permission', function () {
                 var userId = $(this).attr('data-id');
-                var rowData = vm.roleTable.row($(this).parents('tr')).data();
+                var rowData = vm.permissionTable.row($(this).parents('tr')).data();
 
                 bootbox.confirm('Bạn có chắc chắn muốn xóa nhóm tài khoản <span class="text-danger">' + rowData.name + '</span>', function (result) {
                     if (result) {
                         $.ajax({
-                            "url": baseUrl + "/admin/role/" + userId + "/delete",
+                            "url": baseUrl + "/admin/permission/" + userId + "/delete",
                             "method": "POST",
                             "success": function (response) {
                                 if (response && response.code == SUCCESS_CODE) {
                                     toastr.success('Xóa nhóm người dùng thành công.');
-                                    vm.roleTable.ajax.reload();
+                                    vm.permissionTable.ajax.reload();
                                 } else {
                                     toastr.error('Có lỗi xảy ra, vui lòng thử lại sau.');
                                 }
@@ -153,11 +144,11 @@ var app = new Vue({
                 });
             })
 
-            $(document).on('click', '.edit-role', function () {
-                var rowData = vm.roleTable.row($(this).parents('tr')).data();
-                vm.editingRole = rowData;
+            $(document).on('click', '.edit-permission', function () {
+                var rowData = vm.permissionTable.row($(this).parents('tr')).data();
+                vm.editingPermission = rowData;
                 vm.isEditing = true;
-                $('#role-modal').modal('show');
+                $('#permission-modal').modal('show');
             })
         }
     },

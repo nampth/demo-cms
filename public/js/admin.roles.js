@@ -1,4 +1,4 @@
-webpackJsonp([3],{
+webpackJsonp([2],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/js/components/backend/RoleModal.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -92,7 +92,7 @@ __WEBPACK_IMPORTED_MODULE_2_vee_validate__["a" /* Validator */].localize({
             description: {
                 max: 'Mật khẩu tối đa 256 ký tự'
             },
-            redirect: {
+            default_redirect: {
                 required: 'Vui lòng nhập đủ thông tin',
                 max: 'Trang mặc định tối đa 256 ký tự'
                 // regex: 'Tên nhóm người dùng chỉ gồm ký tự thường, ký tự hoa và số',
@@ -34671,7 +34671,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('h5', {
     staticClass: "modal-title",
     domProps: {
-      "innerHTML": _vm._s(_vm.editing ? 'Sửa người dùng' : 'Thêm người dùng')
+      "innerHTML": _vm._s(_vm.editing ? 'Sửa nhóm người dùng' : 'Thêm nhóm người dùng')
     }
   }), _vm._v(" "), _vm._m(0)]), _vm._v(" "), _c('div', {
     staticClass: "modal-body"
@@ -34772,12 +34772,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.role.default_redirect),
       expression: "role.default_redirect"
     }],
-    ref: "redirect",
+    ref: "default_redirect",
     staticClass: "form-control",
     attrs: {
       "type": "text",
-      "id": "redirect",
-      "name": "redirect",
+      "id": "default_redirect",
+      "name": "default_redirect",
       "data-vv-as": "Trang mặc định"
     },
     domProps: {
@@ -34793,11 +34793,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: (_vm.errors.has('redirect')),
-      expression: "errors.has('redirect')"
+      value: (_vm.errors.has('default_redirect')),
+      expression: "errors.has('default_redirect')"
     }],
     staticClass: "text-danger"
-  }, [_vm._v(_vm._s(_vm.errors.first('redirect')))])]), _vm._v(" "), _c('div', {
+  }, [_vm._v(_vm._s(_vm.errors.first('default_redirect')))])]), _vm._v(" "), _c('div', {
     staticClass: "form-group"
   }, [_c('label', {
     staticClass: "form-control-label"
@@ -34955,6 +34955,7 @@ var app = new Vue({
 
     methods: {
         showModal: function showModal() {
+            this.initListPermissions();
             $('#role-modal').modal('show');
         },
 

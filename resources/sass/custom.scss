@@ -54,3 +54,7 @@
 .m--margin-bottom-0 {
   margin-bottom: 0px !important;
 }
+
+.modal .modal-content .modal-header .close:before {
+  content: "\00d7" !important;
+}

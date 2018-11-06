@@ -41,11 +41,13 @@ class RoleController
         $orderBy = $columns[$order[0]['column']]['data'];
         $orderType = $order[0]['dir'];
 
+        $filteredRecords = $this->repo->listing($keyword, $start, $length, $orderBy, $orderType, true);
+        $totalRecords = $this->repo->listing('', $start, $length, $orderBy, $orderType, true);
         return response()->json([
             'draw' => $draw,
             'data' => $this->repo->listing($keyword, $start, $length, $orderBy, $orderType, false),
-            'recordsFiltered' => $this->repo->listing($keyword, $start, $length, $orderBy, $orderType, true),
-            'recordsTotal' => $this->repo->listing('', $start, $length, $orderBy, $orderType, true),
+            'recordsFiltered' => $filteredRecords ? $filteredRecords : 0,
+            'recordsTotal' => $totalRecords ? $totalRecords : 0,
         ]);
     }
 

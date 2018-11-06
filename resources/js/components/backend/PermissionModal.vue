@@ -1,10 +1,10 @@
 <template>
-    <div class="modal fade" :id="id" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true"
-         ref="roleModal">
-        <div class="modal-dialog modal-lg" role="document">
+    <div class="modal fade" :id="id" tabindex="-1" permission="dialog" style="display: none;" aria-hidden="true"
+         ref="permissionModal">
+        <div class="modal-dialog modal-lg" permission="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" v-html="editing ? 'Sửa nhóm người dùng' : 'Thêm nhóm người dùng'"></h5>
+                    <h5 class="modal-title" v-html="editing ? 'Sửa quyền người dùng' : 'Thêm quyền người dùng'"></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -12,11 +12,11 @@
                 <div class="modal-body">
                     <form>
                         <div class="form-group">
-                            <label class="form-control-label">Tên nhóm người dùng:</label>
+                            <label class="form-control-label">Tên quyền người dùng:</label>
                             <input type="text" class="form-control" id="name"
                                    v-validate="'required|min:4|max:32'" name="name"
-                                   data-vv-as="Tên nhóm người dùng"
-                                   v-model="role.name">
+                                   data-vv-as="Tên quyền người dùng"
+                                   v-model="permission.name">
                             <span v-show="!editing && errors.has('name')"
                                   class="text-danger">{{ errors.first('name') }}</span>
                         </div>
@@ -24,32 +24,9 @@
                             <label class="form-control-label">Mô tả:</label>
                             <input type="text" class="form-control" id="description" name="description"
                                    ref="description"
-                                   data-vv-as="Mô tả" v-validate="'max:256'" v-model="role.description">
+                                   data-vv-as="Mô tả" v-validate="'max:256'" v-model="permission.description">
                             <span v-show="errors.has('description')"
                                   class="text-danger">{{ errors.first('description') }}</span>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-control-label">Trang mặc định:</label>
-                            <input type="text" class="form-control" id="default_redirect" name="default_redirect"
-                                   ref="default_redirect"
-                                   data-vv-as="Trang mặc định" v-validate="'required|max:256'"
-                                   v-model="role.default_redirect">
-                            <span v-show="errors.has('default_redirect')"
-                                  class="text-danger">{{ errors.first('default_redirect') }}</span>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-control-label">Quyền người dùng:</label>
-                            <div class="row m--padding-left-15 m--padding-right-15">
-                                <label class="m-checkbox col-6" v-for="(value,key) in permissions">
-                                    <input type="checkbox" name="permissions" :value="value.id">&nbsp; &nbsp;{{
-                                    value.description }}
-                                    <span></span>
-                                    <p class="m--padding-left-10">
-                                        <small>{{ value.name}}</small>
-                                    </p>
-                                </label>
-
-                            </div>
                         </div>
                     </form>
                 </div>
@@ -80,11 +57,6 @@
                 description: {
                     max: 'Mật khẩu tối đa 256 ký tự',
                 },
-                default_redirect: {
-                    required: 'Vui lòng nhập đủ thông tin',
-                    max: 'Trang mặc định tối đa 256 ký tự',
-                    // regex: 'Tên nhóm người dùng chỉ gồm ký tự thường, ký tự hoa và số',
-                },
             }
         }
     })
@@ -100,18 +72,14 @@
                 type: Boolean,
                 default: false
             },
-            permissions: {
-                type: Array,
-                default: () => []
-            },
-            role: {
+            permission: {
                 type: Object,
                 default: {}
             },
         },
         data: function () {
             return {
-                keepPermission: true
+
             }
         },
         mounted() {
@@ -125,22 +93,19 @@
 
                 vm.$validator.validateAll().then(res => {
                     if (res) {
-                        var url = baseUrl + '/admin/role/add';
+                        var url = baseUrl + '/admin/permission/add';
                         if (vm.editing) {
-                            url = baseUrl + '/admin/role/update';
+                            url = baseUrl + '/admin/permission/update';
                         }
-                        var checkedVals = $('input[type="checkbox"][name="permissions"]:checked').map(function () {
-                            return this.value;
-                        }).get();
-                        vm.role.permissions = checkedVals;
-                        var data = vm.role;
+
+                        var data = vm.permission;
                         $.ajax({
                             type: "POST",
                             url: url,
                             data: data, // serializes the form's elements.
                             success: function (data) {
                                 if (data && data.code == SUCCESS_CODE) {
-                                    toastr.success(vm.editing ? 'Cập nhật nhóm người dùng thành công' : 'Thêm nhóm người dùng thành công');
+                                    toastr.success(vm.editing ? 'Cập nhật quyền người dùng thành công' : 'Thêm quyền người dùng thành công');
                                 } else {
                                     toastr.error("Có lỗi xảy ra, vui lòng thử lại sau.");
                                 }
@@ -168,10 +133,8 @@
             },
             handleHideModal() {
                 var vm = this;
-                $(vm.$refs.roleModal).on('hidden.bs.modal', function () {
+                $(vm.$refs.permissionModal).on('hidden.bs.modal', function () {
                     vm.submiting = false;
-                    $('input[type="checkbox"][name="permissions"]:checked').removeAttr('checked');
-                    $('input[type="checkbox"][name="permissions"]:checked').prop('checked', false);
                     vm.$emit('hide');
                     setTimeout(function () {
                         vm.errors.clear();
@@ -181,13 +144,7 @@
             },
         },
         watch: {
-            role: function (val) {
-                if (val && val.permissions) {
-                    _.each(val.permissions, function (item) {
-                        $('input[type="checkbox"][name="permissions"][value="' + item.id + '"]').prop('checked', true);
-                    });
-                }
-            }
+
         }
     }
 </script>
