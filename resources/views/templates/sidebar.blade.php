@@ -34,6 +34,18 @@
                     </a>
                 </li>
             @endif
+            @if(checkSidebar(ADMIN_ROLE_MANAGEMENT))
+                <li class="m-menu__item  {{ setActiveMenu(route('admin.role.index')) }}" aria-haspopup="true">
+                    <a href="{{ route('admin.role.index') }}" class="m-menu__link ">
+                        <i class="m-menu__link-icon la la-sitemap"></i>
+                        <span class="m-menu__link-title">
+                        <span class="m-menu__link-wrap">
+                            <span class="m-menu__link-text">Quản trị nhóm người dùng</span>
+                        </span>
+                    </span>
+                    </a>
+                </li>
+            @endif
         </ul>
     </div>
     <!-- END: Aside Menu -->

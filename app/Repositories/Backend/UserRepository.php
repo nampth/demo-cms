@@ -74,6 +74,7 @@ class UserRepository extends BaseRepository
     {
         $user = User::find($id);
         if ($user->username != 'nampth') {
+            $user->role()->detach();
             return $user->delete();
         }
         return false;

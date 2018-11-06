@@ -20,7 +20,68 @@ class RoleRepository extends BaseRepository
         return Role::class;
     }
 
-    public function listingAll(){
+    public function listing($keyword = "", $start = 0, $length = 10, $orderBy = '', $orderType = 'asc', $countAll = true)
+    {
+        $query = $this->model->with('permissions');
+        if ($keyword) {
+            $query = $query->where('name', 'LIKE', "%$keyword%")
+                ->orWhere('description', 'LIKE', "%$keyword%");
+        }
+
+        $query = $query->limit($length)->offset($start);
+        if ($orderBy) {
+            $query = $query->orderBy($orderBy, $orderType);
+        }
+
+        if ($countAll) {
+            return $query->count();
+        }
+        return $query->get();
+    }
+
+    public function listingAll()
+    {
         return $this->model->all();
+    }
+
+    public function add($name, $description, $redirect, $permission)
+    {
+        $role = new Role();
+        $role->name = $name;
+        $role->description = $description;
+        $role->default_redirect = $redirect;
+        if (!$role->save()) {
+            return false;
+        }
+        $role->permissions()->attach($permission);
+        return true;
+    }
+
+    public function deleteRole($id)
+    {
+        $role = Role::find($id);
+        if (!$role || $role->name == 'admin') {
+            return false;
+        }
+        $role->permissions()->detach();
+        return $role->delete();
+    }
+
+
+    public function update($id, $name, $description, $redirect, $permission)
+    {
+        $role = Role::find($id);
+        if (!$role) {
+            return false;
+        }
+        $role->name = $name;
+        $role->description = $description;
+        $role->default_redirect = $redirect;
+        if (!$role->save()) {
+            return false;
+        }
+        $role->permissions()->detach();
+        $role->permissions()->attach($permission);
+        return true;
     }
 }

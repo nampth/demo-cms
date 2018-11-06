@@ -10,8 +10,8 @@ namespace App\Http\Controllers\Backend;
 
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\AddUserRequest;
-use App\Http\Requests\EditUserRequest;
+use App\Http\Requests\User\AddUserRequest;
+use App\Http\Requests\User\EditUserRequest;
 use App\Repositories\Backend\UserRepository;
 use Illuminate\Http\Request;
 

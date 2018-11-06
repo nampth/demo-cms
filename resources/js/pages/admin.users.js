@@ -22,7 +22,6 @@ var app = new Vue({
         }
     },
     mounted() {
-        // alert(this.test);
         this.initTableUser();
         this.initListRoles();
         this.handleTableActionClick();

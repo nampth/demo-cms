@@ -15,3 +15,4 @@ define('USER_STATUS_DEACTIVE', 1);
 define('ADMIN_DASHBOARD', 'admin_dashboard');
 define('ADMIN_USER_MANAGEMENT', 'user_management');
 define('ADMIN_ROLE_MANAGEMENT', 'role_management');
+define('ADMIN_PERMISSION_MANAGEMENT', 'permission_management');

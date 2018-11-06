@@ -37,9 +37,10 @@ mix.webpackConfig({
 mix.js([
     'resources/js/app.js',
     'resources/js/app.constants.js',
-    // 'resources/js/pages/admin.users.js'
-], 'public/js').version()
+], 'public/js')
+    .js('resources/js/pages/admin.users.js', 'public/js/admin.users.js')
+    .js('resources/js/pages/admin.roles.js', 'public/js/admin.roles.js')
+    .extract(['vue']).version()
     .sass('resources/sass/app.scss', 'public/css').version();
 //
-mix.js('resources/js/pages/admin.users.js', 'public/js')
-    .extract(['vue']).version();
+
