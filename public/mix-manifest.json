@@ -1,9 +1,9 @@
 {
     "/js/app.js": "/js/app.js?id=338a081dba4d671d3a6e",
-    "/css/app.css": "/css/app.css?id=799bd67b06b4e6ef6447",
+    "/css/app.css": "/css/app.css?id=d18c4aed547234bfdce9",
     "/js/admin.users.js": "/js/admin.users.js?id=6a9aaa1aa53bc9e8bb77",
     "/js/admin.roles.js": "/js/admin.roles.js?id=ee6a0dd2d612f9e0eff5",
-    "/js/vendor.js": "/js/vendor.js?id=5d3433a6f81d0a3f6437",
-    "/js/admin.permissions.js": "/js/admin.permissions.js?id=47bff04f45ea365569c9",
+    "/js/admin.permissions.js": "/js/admin.permissions.js?id=35b8c5afbac462123f7b",
+    "/js/vendor.js": "/js/vendor.js?id=23f8cf967b8648ef175b",
     "/js/manifest.js": "/js/manifest.js?id=68cb77cbe266d4262844"
 }

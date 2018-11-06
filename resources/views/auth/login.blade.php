@@ -39,6 +39,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <!--begin::Global Theme Styles -->
     <link href="{{ asset('assets/vendors/base/vendors.bundle.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('assets/demo/default/base/style.bundle.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css"/>
     <!--end::Global Theme Styles -->
 
 
