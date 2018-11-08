@@ -67,62 +67,61 @@ License: You must have a valid license purchased only from themeforest(the above
                 </div>
                 <div class="m-login__signin">
                     <div class="m-login__head">
-                        <h3 class="m-login__title">Sign In To Admin</h3>
+                        <h3 class="m-login__title">Đăng nhập vào hệ thống</h3>
                     </div>
                     <form class="m-login__form m-form" action="{{ url('/') }}/login" method="POST">
                         <div class="form-group m-form__group">
-                            <input class="form-control m-input" type="text" placeholder="Username" name="username"
+                            <input class="form-control m-input" type="text" placeholder="Tên đăng nhập" name="username"
                                    autocomplete="off">
                         </div>
                         <div class="form-group m-form__group">
                             <input class="form-control m-input m-login__form-input--last" type="password"
-                                   placeholder="Password" name="password">
+                                   placeholder="Xác nhận mật khẩu" name="password">
                         </div>
                         <div class="row m-login__form-sub">
                             <div class="col m--align-left m-login__form-left">
                                 <label class="m-checkbox  m-checkbox--light">
-                                    <input type="checkbox" name="remember"> Remember me
+                                    <input type="checkbox" name="remember"> Nhớ mật khẩu
                                     <span></span>
                                 </label>
                             </div>
                             <div class="col m--align-right m-login__form-right">
-                                <a href="javascript:;" id="m_login_forget_password" class="m-link">Forget Password ?</a>
+                                <a href="javascript:;" id="m_login_forget_password" class="m-link">Quên mật khẩu?</a>
                             </div>
                         </div>
                         <div class="m-login__form-action">
-                            <button id="m_login_signin_submit"
+                            <button id="m_login_signin_submit" type="submit"
                                     class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air  m-login__btn m-login__btn--primary">
-                                Sign In
+                                Đăng nhập
                             </button>
                         </div>
                     </form>
                 </div>
                 <div class="m-login__signup">
                     <div class="m-login__head">
-                        <h3 class="m-login__title">Sign Up</h3>
-                        <div class="m-login__desc">Enter your details to create your account:</div>
+                        <h3 class="m-login__title">Đăng ký</h3>
+                        <div class="m-login__desc">Vui lòng điền thông tin đăng ký:</div>
                     </div>
                     <form class="m-login__form m-form" action="#" method="POST">
                         <div class="form-group m-form__group">
-                            <input class="form-control m-input" type="text" placeholder="Fullname" name="fullname">
+                            <input class="form-control m-input" type="text" placeholder="Tên đầy đủ" name="fullname">
                         </div>
                         <div class="form-group m-form__group">
                             <input class="form-control m-input" type="text" placeholder="Email" name="email"
                                    autocomplete="off">
                         </div>
                         <div class="form-group m-form__group">
-                            <input class="form-control m-input" type="password" placeholder="Password" name="password">
+                            <input class="form-control m-input" type="password" placeholder="Mật khẩu" name="password">
                         </div>
                         <div class="form-group m-form__group">
                             <input class="form-control m-input m-login__form-input--last" type="password"
-                                   placeholder="Confirm Password" name="rpassword">
+                                   placeholder="Xác nhận mật khẩu" name="rpassword">
                         </div>
                         <div class="row form-group m-form__group m-login__form-sub">
                             <div class="col m--align-left">
                                 <label class="m-checkbox m-checkbox--light">
-                                    <input type="checkbox" name="agree">I Agree the <a href="#"
-                                                                                       class="m-link m-link--focus">terms
-                                        and conditions</a>.
+                                    <input type="checkbox" name="agree">Tôi đồng ý với <a href="#"
+                                                                                       class="m-link m-link--focus">điều khoản và chính sách</a>.
                                     <span></span>
                                 </label>
                                 <span class="m-form__help"></span>
@@ -131,18 +130,18 @@ License: You must have a valid license purchased only from themeforest(the above
                         <div class="m-login__form-action">
                             <button id="m_login_signup_submit"
                                     class="btn m-btn m-btn--pill m-btn--custom m-btn--air m-login__btn m-login__btn--primary">
-                                Sign Up
+                                Đăng ký
                             </button>&nbsp;&nbsp;
                             <button id="m_login_signup_cancel"
-                                    class="btn m-btn m-btn--pill m-btn--custom m-btn--air m-login__btn">Cancel
+                                    class="btn m-btn m-btn--pill m-btn--custom m-btn--air m-login__btn">Hủy bỏ
                             </button>
                         </div>
                     </form>
                 </div>
                 <div class="m-login__forget-password">
                     <div class="m-login__head">
-                        <h3 class="m-login__title">Forgotten Password ?</h3>
-                        <div class="m-login__desc">Enter your email to reset your password:</div>
+                        <h3 class="m-login__title">Quên mật khẩu ?</h3>
+                        <div class="m-login__desc">Vui lòng điền email để chúng tôi giúp bạn khôi phục mật khẩu:</div>
                     </div>
                     <form class="m-login__form m-form" action="#">
                         <div class="form-group m-form__group">
@@ -152,20 +151,20 @@ License: You must have a valid license purchased only from themeforest(the above
                         <div class="m-login__form-action">
                             <button id="m_login_forget_password_submit"
                                     class="btn m-btn m-btn--pill m-btn--custom m-btn--air m-login__btn m-login__btn--primary">
-                                Request
+                                Yêu cầu
                             </button>&nbsp;&nbsp;
                             <button id="m_login_forget_password_cancel"
-                                    class="btn m-btn m-btn--pill m-btn--custom m-btn--air m-login__btn">Cancel
+                                    class="btn m-btn m-btn--pill m-btn--custom m-btn--air m-login__btn">Hủy bỏ
                             </button>
                         </div>
                     </form>
                 </div>
                 <div class="m-login__account">
 				<span class="m-login__account-msg">
-				Don't have an account yet ?
+				Bạn chưa có tài khoản ?
 				</span>&nbsp;&nbsp;
-                    <a href="javascript:;" id="m_login_signup" class="m-link m-link--light m-login__account-link">Sign
-                        Up</a>
+                    <a href="javascript:;" id="m_login_signup" class="m-link m-link--light m-login__account-link">Đăng
+                        ký ngay</a>
                 </div>
             </div>
         </div>
@@ -175,7 +174,10 @@ License: You must have a valid license purchased only from themeforest(the above
 </div>
 <!-- end:: Page -->
 
-
+<script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
 <!--begin::Global Theme Bundle -->
 <script>
     $.ajaxSetup({
@@ -184,6 +186,7 @@ License: You must have a valid license purchased only from themeforest(the above
         }
     });
 </script>
+
 <script src="{{ asset('assets/vendors/base/vendors.bundle.js') }}" type="text/javascript"></script>
 <script src="{{ asset('assets/demo/default/base/scripts.bundle.js') }}" type="text/javascript"></script>
 <!--end::Global Theme Bundle -->

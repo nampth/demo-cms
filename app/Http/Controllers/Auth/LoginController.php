@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
@@ -26,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/admin/user';
+    protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
@@ -42,4 +43,23 @@ class LoginController extends Controller
     {
         return 'username';
     }
+
+    public function sendLoginResponse(Request $request)
+    {
+        $request->session()->regenerate();
+
+        $this->clearLoginAttempts($request);
+
+        return $this->authenticated($request, $this->guard()->user())
+            ? '' : url('/') . $this->redirectPath();
+    }
+
+    public function showLoginForm()
+    {
+        if (Auth::check()) {
+            return redirect()->intended(Auth::user()->role()->first()->default_redirect);
+        }
+        return view('auth.login');
+    }
+
 }
