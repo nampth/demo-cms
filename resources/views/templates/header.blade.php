@@ -50,7 +50,9 @@
 
                     <div class="m-stack__item m-topbar__nav-wrapper">
                         <ul class="m-topbar__nav m-nav m-nav--inline">
-                            <li class="m-nav__item m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-center m-dropdown--mobile-full-width m-dropdown--skin-light	m-list-search m-list-search--skin-light" m-dropdown-toggle="click" id="m_quicksearch" m-quicksearch-mode="dropdown" m-dropdown-persistent="1">
+                            <li class="m-nav__item m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-center m-dropdown--mobile-full-width m-dropdown--skin-light	m-list-search m-list-search--skin-light"
+                                m-dropdown-toggle="click" id="m_quicksearch" m-quicksearch-mode="dropdown"
+                                m-dropdown-persistent="1">
 
                                 <a href="#" class="m-nav__link m-dropdown__toggle">
                                     <span class="m-nav__link-icon"><i class="flaticon-search-1"></i></span>
@@ -62,24 +64,37 @@
                                             <form class="m-list-search__form">
                                                 <div class="m-list-search__form-wrapper">
 						<span class="m-list-search__form-input-wrapper">
-							<input id="m_quicksearch_input" autocomplete="off" type="text" name="q" class="m-list-search__form-input" value="" placeholder="Search...">
+							<input id="m_quicksearch_input" autocomplete="off" type="text" name="q"
+                                   class="m-list-search__form-input" value="" placeholder="Search...">
 						</span>
-                                                    <span class="m-list-search__form-icon-close" id="m_quicksearch_close">
+                                                    <span class="m-list-search__form-icon-close"
+                                                          id="m_quicksearch_close">
 							<i class="la la-remove"></i>
 						</span>
                                                 </div>
                                             </form>
                                         </div>
                                         <div class="m-dropdown__body">
-                                            <div class="m-dropdown__scrollable m-scrollable m-scroller ps" data-scrollable="true" data-height="300" data-mobile-height="200" style="height: 300px; overflow: hidden;">
+                                            <div class="m-dropdown__scrollable m-scrollable m-scroller ps"
+                                                 data-scrollable="true" data-height="300" data-mobile-height="200"
+                                                 style="height: 300px; overflow: hidden;">
                                                 <div class="m-dropdown__content">
                                                 </div>
-                                                <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; right: 4px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></div>
+                                                <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+                                                    <div class="ps__thumb-x" tabindex="0"
+                                                         style="left: 0px; width: 0px;"></div>
+                                                </div>
+                                                <div class="ps__rail-y" style="top: 0px; right: 4px;">
+                                                    <div class="ps__thumb-y" tabindex="0"
+                                                         style="top: 0px; height: 0px;"></div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </li>
-                            <li class="m-nav__item m-topbar__notifications m-topbar__notifications--img m-dropdown m-dropdown--large m-dropdown--header-bg-fill m-dropdown--arrow m-dropdown--align-center 	m-dropdown--mobile-full-width" m-dropdown-toggle="click" m-dropdown-persistent="1">
+                            <li class="m-nav__item m-topbar__notifications m-topbar__notifications--img m-dropdown m-dropdown--large m-dropdown--header-bg-fill m-dropdown--arrow m-dropdown--align-center 	m-dropdown--mobile-full-width"
+                                m-dropdown-toggle="click" m-dropdown-persistent="1">
                                 <a href="#" class="m-nav__link m-dropdown__toggle" id="m_topbar_notification_icon">
                                     <span class="m-nav__link-badge m-badge m-badge--dot m-badge--dot-small m-badge--danger"></span>
                                     <span class="m-nav__link-icon"><i class="flaticon-alarm"></i></span>
@@ -87,28 +102,36 @@
                                 <div class="m-dropdown__wrapper">
                                     <span class="m-dropdown__arrow m-dropdown__arrow--center"></span>
                                     <div class="m-dropdown__inner">
-                                        <div class="m-dropdown__header m--align-center" style="background: url(assets/app/media/img/misc/notification_bg.jpg); background-size: cover;">
+                                        <div class="m-dropdown__header m--align-center"
+                                             style="background: url(assets/app/media/img/misc/notification_bg.jpg); background-size: cover;">
                                             <span class="m-dropdown__header-title">9 New</span>
                                             <span class="m-dropdown__header-subtitle">User Notifications</span>
                                         </div>
                                         <div class="m-dropdown__body">
                                             <div class="m-dropdown__content">
-                                                <ul class="nav nav-tabs m-tabs m-tabs-line m-tabs-line--brand" role="tablist">
+                                                <ul class="nav nav-tabs m-tabs m-tabs-line m-tabs-line--brand"
+                                                    role="tablist">
                                                     <li class="nav-item m-tabs__item">
-                                                        <a class="nav-link m-tabs__link active" data-toggle="tab" href="#topbar_notifications_notifications" role="tab">
+                                                        <a class="nav-link m-tabs__link active" data-toggle="tab"
+                                                           href="#topbar_notifications_notifications" role="tab">
                                                             Alerts
                                                         </a>
                                                     </li>
                                                     <li class="nav-item m-tabs__item">
-                                                        <a class="nav-link m-tabs__link" data-toggle="tab" href="#topbar_notifications_events" role="tab">Events</a>
+                                                        <a class="nav-link m-tabs__link" data-toggle="tab"
+                                                           href="#topbar_notifications_events" role="tab">Events</a>
                                                     </li>
                                                     <li class="nav-item m-tabs__item">
-                                                        <a class="nav-link m-tabs__link" data-toggle="tab" href="#topbar_notifications_logs" role="tab">Logs</a>
+                                                        <a class="nav-link m-tabs__link" data-toggle="tab"
+                                                           href="#topbar_notifications_logs" role="tab">Logs</a>
                                                     </li>
                                                 </ul>
                                                 <div class="tab-content">
-                                                    <div class="tab-pane active" id="topbar_notifications_notifications" role="tabpanel">
-                                                        <div class="m-scrollable m-scroller ps" data-scrollable="true" data-height="250" data-mobile-height="200" style="height: 250px; overflow: hidden;">
+                                                    <div class="tab-pane active" id="topbar_notifications_notifications"
+                                                         role="tabpanel">
+                                                        <div class="m-scrollable m-scroller ps" data-scrollable="true"
+                                                             data-height="250" data-mobile-height="200"
+                                                             style="height: 250px; overflow: hidden;">
                                                             <div class="m-list-timeline m-list-timeline--skin-light">
                                                                 <div class="m-list-timeline__items">
                                                                     <div class="m-list-timeline__item">
@@ -118,7 +141,8 @@
                                                                     </div>
                                                                     <div class="m-list-timeline__item">
                                                                         <span class="m-list-timeline__badge"></span>
-                                                                        <span class="m-list-timeline__text">System shutdown <span class="m-badge m-badge--success m-badge--wide">pending</span></span>
+                                                                        <span class="m-list-timeline__text">System shutdown <span
+                                                                                    class="m-badge m-badge--success m-badge--wide">pending</span></span>
                                                                         <span class="m-list-timeline__time">14 mins</span>
                                                                     </div>
                                                                     <div class="m-list-timeline__item">
@@ -128,17 +152,21 @@
                                                                     </div>
                                                                     <div class="m-list-timeline__item">
                                                                         <span class="m-list-timeline__badge"></span>
-                                                                        <span class="m-list-timeline__text">DB overloaded 80% <span class="m-badge m-badge--info m-badge--wide">settled</span></span>
+                                                                        <span class="m-list-timeline__text">DB overloaded 80% <span
+                                                                                    class="m-badge m-badge--info m-badge--wide">settled</span></span>
                                                                         <span class="m-list-timeline__time">1 hr</span>
                                                                     </div>
                                                                     <div class="m-list-timeline__item">
                                                                         <span class="m-list-timeline__badge"></span>
-                                                                        <span class="m-list-timeline__text">System error - <a href="#" class="m-link">Check</a></span>
+                                                                        <span class="m-list-timeline__text">System error - <a
+                                                                                    href="#"
+                                                                                    class="m-link">Check</a></span>
                                                                         <span class="m-list-timeline__time">2 hrs</span>
                                                                     </div>
                                                                     <div class="m-list-timeline__item m-list-timeline__item--read">
                                                                         <span class="m-list-timeline__badge"></span>
-                                                                        <span href="#" class="m-list-timeline__text">New order received <span class="m-badge m-badge--danger m-badge--wide">urgent</span></span>
+                                                                        <span href="#" class="m-list-timeline__text">New order received <span
+                                                                                    class="m-badge m-badge--danger m-badge--wide">urgent</span></span>
                                                                         <span class="m-list-timeline__time">7 hrs</span>
                                                                     </div>
                                                                     <div class="m-list-timeline__item m-list-timeline__item--read">
@@ -153,48 +181,75 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; right: 4px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></div>
+                                                            <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+                                                                <div class="ps__thumb-x" tabindex="0"
+                                                                     style="left: 0px; width: 0px;"></div>
+                                                            </div>
+                                                            <div class="ps__rail-y" style="top: 0px; right: 4px;">
+                                                                <div class="ps__thumb-y" tabindex="0"
+                                                                     style="top: 0px; height: 0px;"></div>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div class="tab-pane" id="topbar_notifications_events" role="tabpanel">
-                                                        <div class="m-scrollable m-scroller ps" data-scrollable="true" data-height="250" data-mobile-height="200" style="height: 250px; overflow: hidden;">
+                                                    <div class="tab-pane" id="topbar_notifications_events"
+                                                         role="tabpanel">
+                                                        <div class="m-scrollable m-scroller ps" data-scrollable="true"
+                                                             data-height="250" data-mobile-height="200"
+                                                             style="height: 250px; overflow: hidden;">
                                                             <div class="m-list-timeline m-list-timeline--skin-light">
                                                                 <div class="m-list-timeline__items">
                                                                     <div class="m-list-timeline__item">
                                                                         <span class="m-list-timeline__badge m-list-timeline__badge--state1-success"></span>
-                                                                        <a href="#" class="m-list-timeline__text">New order received</a>
+                                                                        <a href="#" class="m-list-timeline__text">New
+                                                                            order received</a>
                                                                         <span class="m-list-timeline__time">Just now</span>
                                                                     </div>
                                                                     <div class="m-list-timeline__item">
                                                                         <span class="m-list-timeline__badge m-list-timeline__badge--state1-danger"></span>
-                                                                        <a href="#" class="m-list-timeline__text">New invoice received</a>
+                                                                        <a href="#" class="m-list-timeline__text">New
+                                                                            invoice received</a>
                                                                         <span class="m-list-timeline__time">20 mins</span>
                                                                     </div>
                                                                     <div class="m-list-timeline__item">
                                                                         <span class="m-list-timeline__badge m-list-timeline__badge--state1-success"></span>
-                                                                        <a href="#" class="m-list-timeline__text">Production server up</a>
+                                                                        <a href="#" class="m-list-timeline__text">Production
+                                                                            server up</a>
                                                                         <span class="m-list-timeline__time">5 hrs</span>
                                                                     </div>
                                                                     <div class="m-list-timeline__item">
                                                                         <span class="m-list-timeline__badge m-list-timeline__badge--state1-info"></span>
-                                                                        <a href="#" class="m-list-timeline__text">New order received</a>
+                                                                        <a href="#" class="m-list-timeline__text">New
+                                                                            order received</a>
                                                                         <span class="m-list-timeline__time">7 hrs</span>
                                                                     </div>
                                                                     <div class="m-list-timeline__item">
                                                                         <span class="m-list-timeline__badge m-list-timeline__badge--state1-info"></span>
-                                                                        <a href="#" class="m-list-timeline__text">System shutdown</a>
+                                                                        <a href="#" class="m-list-timeline__text">System
+                                                                            shutdown</a>
                                                                         <span class="m-list-timeline__time">11 mins</span>
                                                                     </div>
                                                                     <div class="m-list-timeline__item">
                                                                         <span class="m-list-timeline__badge m-list-timeline__badge--state1-info"></span>
-                                                                        <a href="#" class="m-list-timeline__text">Production server down</a>
+                                                                        <a href="#" class="m-list-timeline__text">Production
+                                                                            server down</a>
                                                                         <span class="m-list-timeline__time">3 hrs</span>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; right: 4px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></div>
+                                                            <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+                                                                <div class="ps__thumb-x" tabindex="0"
+                                                                     style="left: 0px; width: 0px;"></div>
+                                                            </div>
+                                                            <div class="ps__rail-y" style="top: 0px; right: 4px;">
+                                                                <div class="ps__thumb-y" tabindex="0"
+                                                                     style="top: 0px; height: 0px;"></div>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div class="tab-pane" id="topbar_notifications_logs" role="tabpanel">
-                                                        <div class="m-stack m-stack--ver m-stack--general" style="min-height: 180px;">
+                                                    <div class="tab-pane" id="topbar_notifications_logs"
+                                                         role="tabpanel">
+                                                        <div class="m-stack m-stack--ver m-stack--general"
+                                                             style="min-height: 180px;">
                                                             <div class="m-stack__item m-stack__item--center m-stack__item--middle">
                                                                 <span class="">All caught up!<br>No new logs.</span>
                                                             </div>
@@ -206,7 +261,8 @@
                                     </div>
                                 </div>
                             </li>
-                            <li class="m-nav__item m-topbar__quick-actions m-topbar__quick-actions--img m-dropdown m-dropdown--large m-dropdown--header-bg-fill m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push m-dropdown--mobile-full-width m-dropdown--skin-light" m-dropdown-toggle="click">
+                            <li class="m-nav__item m-topbar__quick-actions m-topbar__quick-actions--img m-dropdown m-dropdown--large m-dropdown--header-bg-fill m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push m-dropdown--mobile-full-width m-dropdown--skin-light"
+                                m-dropdown-toggle="click">
                                 <a href="#" class="m-nav__link m-dropdown__toggle">
                                     <span class="m-nav__link-badge m-badge m-badge--dot m-badge--info m--hide"></span>
                                     <span class="m-nav__link-icon"><i class="flaticon-share"></i></span>
@@ -214,13 +270,15 @@
                                 <div class="m-dropdown__wrapper">
                                     <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
                                     <div class="m-dropdown__inner">
-                                        <div class="m-dropdown__header m--align-center" style="background: url(assets/app/media/img/misc/quick_actions_bg.jpg); background-size: cover;">
+                                        <div class="m-dropdown__header m--align-center"
+                                             style="background: url(assets/app/media/img/misc/quick_actions_bg.jpg); background-size: cover;">
                                             <span class="m-dropdown__header-title">Quick Actions</span>
                                             <span class="m-dropdown__header-subtitle">Shortcuts</span>
                                         </div>
                                         <div class="m-dropdown__body m-dropdown__body--paddingless">
                                             <div class="m-dropdown__content">
-                                                <div class="data" data="false.html" data-height="380" data-mobile-height="200">
+                                                <div class="data" data="false.html" data-height="380"
+                                                     data-mobile-height="200">
                                                     <div class="m-nav-grid m-nav-grid--skin-light">
                                                         <div class="m-nav-grid__row">
                                                             <a href="#" class="m-nav-grid__item">
@@ -249,27 +307,32 @@
                                     </div>
                                 </div>
                             </li>
-                            <li class="m-nav__item m-topbar__user-profile m-topbar__user-profile--img m-dropdown m-dropdown--medium m-dropdown--arrow m-dropdown--header-bg-fill m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light" m-dropdown-toggle="click" aria-expanded="true">
+                            <li class="m-nav__item m-topbar__user-profile m-topbar__user-profile--img m-dropdown m-dropdown--medium m-dropdown--arrow m-dropdown--header-bg-fill m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light"
+                                m-dropdown-toggle="click" aria-expanded="true">
                                 <a href="#" class="m-nav__link m-dropdown__toggle">
                                     <span class="m-topbar__userpic">
-                                        <img src="{{ asset('assets/app/media/img/users/user4.jpg') }}" class="m--img-rounded m--marginless" alt="">
+                                        <img src="{{ asset('assets/app/media/img/users/user4.jpg') }}"
+                                             class="m--img-rounded m--marginless" alt="">
                                     </span>
                                     <span class="m-topbar__username m--hide">Nick</span>
                                 </a>
                                 <div class="m-dropdown__wrapper" style="z-index: 101;">
-                                    <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust" style="left: auto; right: 13px;"></span>
+                                    <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"
+                                          style="left: auto; right: 13px;"></span>
                                     <div class="m-dropdown__inner">
-                                        <div class="m-dropdown__header m--align-center" style="background: url(assets/app/media/img/misc/user_profile_bg.jpg); background-size: cover;">
+                                        <div class="m-dropdown__header m--align-center"
+                                             style="background: url(assets/app/media/img/misc/user_profile_bg.jpg); background-size: cover;">
                                             <div class="m-card-user m-card-user--skin-dark">
                                                 <div class="m-card-user__pic">
-                                                    <img src="{{ asset('assets/app/media/img/users/user4.jpg') }}" class="m--img-rounded m--marginless" alt="">
+                                                    <img src="{{ asset('assets/app/media/img/users/user4.jpg') }}"
+                                                         class="m--img-rounded m--marginless" alt="">
                                                     <!--
                                                     <span class="m-type m-type--lg m--bg-danger"><span class="m--font-light">S<span><span>
                                                     -->
                                                 </div>
                                                 <div class="m-card-user__details">
-                                                    <span class="m-card-user__name m--font-weight-500">Mark Andre</span>
-                                                    <a href="#" class="m-card-user__email m--font-weight-300 m-link">mark.andre@gmail.com</a>
+                                                    <span class="m-card-user__name m--font-weight-500">{{ \Illuminate\Support\Facades\Auth::user()->fullname ? \Illuminate\Support\Facades\Auth::user()->fullname :  \Illuminate\Support\Facades\Auth::user()->username }}</span>
+                                                    <a href="#" class="m-card-user__email m--font-weight-300 m-link">{{ \Illuminate\Support\Facades\Auth::user()->email }}</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -280,7 +343,8 @@
                                                         <span class="m-nav__section-text">Section</span>
                                                     </li>
                                                     <li class="m-nav__item">
-                                                        <a href="indexa80c.html?page=header/profile&amp;demo=default" class="m-nav__link">
+                                                        <a href="indexa80c.html?page=header/profile&amp;demo=default"
+                                                           class="m-nav__link">
                                                             <i class="m-nav__link-icon flaticon-profile-1"></i>
                                                             <span class="m-nav__link-title">
 									<span class="m-nav__link-wrap">
@@ -291,13 +355,15 @@
                                                         </a>
                                                     </li>
                                                     <li class="m-nav__item">
-                                                        <a href="indexa80c.html?page=header/profile&amp;demo=default" class="m-nav__link">
+                                                        <a href="indexa80c.html?page=header/profile&amp;demo=default"
+                                                           class="m-nav__link">
                                                             <i class="m-nav__link-icon flaticon-share"></i>
                                                             <span class="m-nav__link-text">Activity</span>
                                                         </a>
                                                     </li>
                                                     <li class="m-nav__item">
-                                                        <a href="indexa80c.html?page=header/profile&amp;demo=default" class="m-nav__link">
+                                                        <a href="indexa80c.html?page=header/profile&amp;demo=default"
+                                                           class="m-nav__link">
                                                             <i class="m-nav__link-icon flaticon-chat-1"></i>
                                                             <span class="m-nav__link-text">Messages</span>
                                                         </a>
@@ -305,13 +371,15 @@
                                                     <li class="m-nav__separator m-nav__separator--fit">
                                                     </li>
                                                     <li class="m-nav__item">
-                                                        <a href="indexa80c.html?page=header/profile&amp;demo=default" class="m-nav__link">
+                                                        <a href="indexa80c.html?page=header/profile&amp;demo=default"
+                                                           class="m-nav__link">
                                                             <i class="m-nav__link-icon flaticon-info"></i>
                                                             <span class="m-nav__link-text">FAQ</span>
                                                         </a>
                                                     </li>
                                                     <li class="m-nav__item">
-                                                        <a href="indexa80c.html?page=header/profile&amp;demo=default" class="m-nav__link">
+                                                        <a href="indexa80c.html?page=header/profile&amp;demo=default"
+                                                           class="m-nav__link">
                                                             <i class="m-nav__link-icon flaticon-lifebuoy"></i>
                                                             <span class="m-nav__link-text">Support</span>
                                                         </a>
@@ -319,7 +387,8 @@
                                                     <li class="m-nav__separator m-nav__separator--fit">
                                                     </li>
                                                     <li class="m-nav__item">
-                                                        <a href="{{ url('/logout') }}" class="btn m-btn--pill    btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">Logout</a>
+                                                        <a href="{{ url('/logout') }}"
+                                                           class="btn m-btn--pill    btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">Logout</a>
                                                     </li>
                                                 </ul>
                                             </div>

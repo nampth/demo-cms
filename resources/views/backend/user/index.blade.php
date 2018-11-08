@@ -33,8 +33,8 @@
             @include('backend.user.partitals.table')
         </div>
     </div>
-    <user-modal :id="'user-modal'" :roles="roles" :editing="isEditing" :user="editingUser" :selected-role="selectedRole"
-                @hide="resetUser" @reload="initTableUser" @role="setDefaultRole"></user-modal>
+    <user-modal :id="'user-modal'" :roles="roles" :editing="isEditing" :user="editingUser"
+                @hide="resetUser" @reload="initTableUser"></user-modal>
 @endsection
 
 @section('asset_footer')

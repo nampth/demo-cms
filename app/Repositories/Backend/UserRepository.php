@@ -29,7 +29,9 @@ class UserRepository extends BaseRepository
     {
         $query = $this->model->with('role');
         if ($keyword) {
-            $query = $query->where('username', 'LIKE', "%$keyword%");
+            $query = $query->where('username', 'LIKE', "%$keyword%")
+                ->orWhere('email', 'LIKE', "%$keyword%")
+                ->orWhere('fullname', 'LIKE', "%$keyword%");
         }
 
         $query = $query->limit($length)->offset($start);
@@ -43,7 +45,7 @@ class UserRepository extends BaseRepository
         return $query->get();
     }
 
-    public function add($username, $password, $roleId)
+    public function add($username, $password, $fullname, $email, $roleId)
     {
         $role = Role::find($roleId);
         if (!$role) {
@@ -52,6 +54,8 @@ class UserRepository extends BaseRepository
         $user = new User();
         $user->username = $username;
         $user->password = bcrypt($password);
+        $user->fullname = $fullname;
+        $user->email = $email;
         $user->status = USER_STATUS_ACTIVE;
         if (!$user->save()) {
             return false;
@@ -81,17 +85,17 @@ class UserRepository extends BaseRepository
 
     }
 
-    public function edit($id, $password, $role)
+    public function edit($id, $password, $fullname, $email, $roleId)
     {
         $user = User::find($id);
+        $user->role()->detach();
+        $user->role()->attach(intval($roleId));
         if ($password) {
             $user->password = bcrypt($password);
         }
+        $user->fullname = $fullname;
+        $user->email = $email;
+        return $user->save();
 
-        if (!$user->save()) {
-            return false;
-        }
-        $user->role()->attach($role);
-        return true;
     }
 }

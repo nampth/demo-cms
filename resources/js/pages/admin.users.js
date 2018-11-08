@@ -15,10 +15,11 @@ var app = new Vue({
             editingUser: {
                 username: null,
                 password: null,
+                fullname: null,
+                email: null,
                 re_password: null
             },
             isEditing: false,
-            selectedRole: null
         }
     },
     mounted() {
@@ -31,17 +32,15 @@ var app = new Vue({
             this.editingUser = {
                 username: null,
                 password: null,
+                fullname: null,
+                email: null,
                 re_password: null
             };
             this.isEditing = false;
-            this.selectedRole = null;
         },
         showModal() {
             this.initListRoles();
             $('#user-modal').modal('show');
-        },
-        setDefaultRole() {
-            this.selectedRole = this.roles ? this.roles[0].id : null;
         },
         initTableUser: function () {
             var vm = this;
@@ -83,12 +82,20 @@ var app = new Vue({
                             {
                                 data: "username",
                                 orderable: true,
+                            }
+                            , {
+                                data: "fullname",
+                                orderable: true,
+                            },
+                            {
+                                data: "email",
+                                orderable: true,
                             },
                             {
                                 data: null,
-                                orderable: true,
+                                orderable: false,
                                 render: function (data, type, row) {
-                                    return data['role']['0'] ? data['role']['0']['description'] : '';
+                                    return (row['role'] && row['role']['0'] != undefined && row['role']['0']['description']) ? row['role']['0']['description'] : '';
                                 }
                             },
                             {
@@ -125,17 +132,18 @@ var app = new Vue({
                         ]
                     }
                 );
-            }
-            vm.userTable.on('draw.dt search.dt order.dt', function () {
-                vm.userTable.column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {
-                    cell.innerHTML = i + 1;
+                vm.userTable.on('draw.dt search.dt order.dt', function () {
+                    vm.userTable.column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {
+                        cell.innerHTML = i + 1;
+                    });
+                    $('#m_user_table_filter input').addClass('form-control m-input m-input--square');
                 });
-                $('#m_user_table_filter input').addClass('form-control m-input m-input--square');
-            });
-            $('select').select2({
-                width: '60px',
-                minimumResultsForSearch: -1
-            });
+                $('select').select2({
+                    width: '60px',
+                    minimumResultsForSearch: -1
+                });
+            }
+
         },
         initListRoles() {
             var vm = this;
@@ -160,7 +168,7 @@ var app = new Vue({
                 var userId = $(this).attr('data-id');
                 var rowData = vm.userTable.row($(this).parents('tr')).data();
 
-                bootbox.confirm('Bạn có chắc chắn muốn xóa tài khoản <span class="text-danger">' + rowData.username + '</span>', function (result) {
+                bootbox.confirm('Bạn có chắc chắn muốn xóa tài khoản <span class="text-danger">' + (rowData.fullname ? rowData.fullname : rowData.username) + '</span>', function (result) {
                     if (result) {
                         $.ajax({
                             "url": baseUrl + "/admin/user/" + userId + "/delete",
@@ -184,8 +192,8 @@ var app = new Vue({
 
             $(document).on('change', '.change-user-status', function () {
                 var rowData = vm.userTable.row($(this).parents('tr')).data();
-                var msg = rowData.status == USER_ACTIVE_STATUS ? 'Bạn có chắc chắn muốn khóa tài khoản <span class="text-danger">' + rowData.username + '</span>'
-                    : 'Bạn có chắc chắn muốn kích hoạt lại tài khoản <span class="text-danger">' + rowData.username + '</span>'
+                var msg = rowData.status == USER_ACTIVE_STATUS ? 'Bạn có chắc chắn muốn khóa tài khoản <span class="text-danger">' + (rowData.fullname ? rowData.fullname : rowData.username) + '</span>'
+                    : 'Bạn có chắc chắn muốn kích hoạt lại tài khoản <span class="text-danger">' + (rowData.fullname ? rowData.fullname : rowData.username) + '</span>'
                 bootbox.confirm(msg, function (result) {
                     if (result) {
                         $.ajax({
@@ -212,7 +220,6 @@ var app = new Vue({
             $(document).on('click', '.edit-user', function () {
                 var rowData = vm.userTable.row($(this).parents('tr')).data();
                 vm.editingUser = rowData;
-                vm.selectedRole = rowData.role['0']['id'];
                 vm.isEditing = true;
                 $('#user-modal').modal('show');
             })

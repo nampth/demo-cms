@@ -37,7 +37,7 @@
     <link href="{{ asset('assets/vendors/custom/fullcalendar/fullcalendar.bundle.css') }}" rel="stylesheet"
           type="text/css"/>
     <!--end::Page Vendors Styles -->
-    <link rel="shortcut icon" href="assets/demo/default/media/img/logo/favicon.ico"/>
+    <link rel="shortcut icon" href="{{ asset('assets/demo/default/media/img/logo/favicon.ico') }}"/>
     <script src="{{ asset('/js/manifest.js') }}" type="text/javascript"></script>
     <script src="{{ asset('/js/vendor.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/vendors/base/vendors.bundle.js') }}" type="text/javascript"></script>

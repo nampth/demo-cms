@@ -43,11 +43,27 @@
                                    v-validate="'required|min:8|max:100|confirmed:password'" v-model="user.re_password">
                             <span v-show="errors.has('re_password')" class="text-danger">{{ errors.first('re_password') }}</span>
                         </div>
+                        <div class="form-group">
+                            <label class="form-control-label">Tên người dùng:</label>
+                            <input type="text" class="form-control" id="fullname"
+                                   v-validate="'min:6|max:100'" name="fullname"
+                                   data-vv-as="Tên đầy đủ"
+                                   v-model="user.fullname">
+                            <span v-show="!editing && errors.has('fullname')" class="text-danger">{{ errors.first('fullname') }}</span>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label">Email:</label>
+                            <input type="text" class="form-control" id="email"
+                                   v-validate="'email:true|min:6|max:100'" name="email"
+                                   data-vv-as="Email"
+                                   v-model="user.email">
+                            <span v-show="!editing && errors.has('email')" class="text-danger">{{ errors.first('email') }}</span>
+                        </div>
                         <div class="form-group m--margin-bottom-0" v-if="roles && roles.length">
                             <label class="form-control-label">Nhóm người dùng:</label>
                             <select name="role" v-validate="'required'" ref="slRole"
                                     id="slRole">
-                                <option v-for="role in roles" :value="role.id" v-html="role.name"></option>
+                                <option v-for="role in roles" :value="role.id" v-html="role.description"></option>
                             </select>
                         </div>
                         <span v-if="submiting && !selectedRole"
@@ -89,6 +105,15 @@
                     max: 'Mật khẩu tối đa 100 ký tự',
                     confirmed: 'Mật khẩu không trùng khớp',
                 },
+                fullname: {
+                    min: 'Tên thiểu 6 ký tự',
+                    max: 'Tên tối đa 100 ký tự',
+                },
+                email: {
+                    email: 'Định dạng email không phù hợp',
+                    min: 'Mật khẩu tối thiểu 6 ký tự',
+                    max: 'Mật khẩu tối đa 100 ký tự',
+                },
             }
         }
     })
@@ -114,15 +139,13 @@
                 type: Object,
                 default: {}
             },
-            selectedRole: {
-                type: Number,
-                default: null
-            }
+
         },
         data: function () {
             return {
                 submiting: false,
-                keepPassword: true
+                keepPassword: true,
+                selectedRole: null
             }
         },
         mounted() {
@@ -197,17 +220,17 @@
                         minimumResultsForSearch: -1
                     }).change(function () {
                         vm.selectedRole = $(this).val();
-                    });
-                    if (!vm.editing && vm.roles) {
-                       vm.$emit('role');
-                    }
-                    if (vm.editing && vm.selectedRole) {
-                        $('#slRole').val(vm.selectedRole).trigger('change');
-                    }
+                    })
                 })
 
             }
         },
-        watch: {}
+        watch: {
+            user: function (obj) {
+                if (obj && obj.role && obj.role[0]) {
+                    $('#slRole').val(obj.role[0].id).trigger('change');
+                }
+            }
+        }
     }
 </script>

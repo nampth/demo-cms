@@ -6,7 +6,7 @@
  * Time: 3:13 PM
  */
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\User;
 
 
 use Illuminate\Foundation\Http\FormRequest;
@@ -22,9 +22,11 @@ class AddUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => 'required|unique:users|min:6|max:32|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
+            'username' => 'required|unique:users|min:6|max:32',
             'password' => 'required|min:8|max:100',
             're_password' => 'required|min:8|max:100|same:password',
+            'fullname' => 'nullable|min:6|max:100',
+            'email' => 'nullable|min:6|max:100|email:true',
             'role' => 'required|numeric'
         ];
     }
@@ -35,6 +37,8 @@ class AddUserRequest extends FormRequest
             'username' => 'Tên đăng nhập',
             'password' => 'Mật khẩu',
             're_password' => 'Nhập lại mật khẩu',
+            'fullname' => 'Tên đầy đủ',
+            'email' => 'Email',
             'role' => 'Nhóm người dùng'
         ];
     }

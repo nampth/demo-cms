@@ -5,6 +5,8 @@
     <tr>
         <td>#</td>
         <td>Tên tài khoản</td>
+        <td>Tên đầy đủ</td>
+        <td>Email</td>
         <td>Nhóm người dùng</td>
         <td>Đang hoạt động</td>
         <td>Thời gian tạo</td>

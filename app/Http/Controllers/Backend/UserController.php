@@ -58,7 +58,13 @@ class UserController extends Controller
     public function add(AddUserRequest $request)
     {
         return response()->json([
-            'code' => $this->repo->add($request->input('username'), $request->input('password'), $request->input('role')) ? SUCCESS_CODE : ERROR_CODE
+            'code' => $this->repo->add(
+                $request->input('username'),
+                $request->input('password'),
+                $request->input('fullname'),
+                $request->input('email'),
+                $request->input('role')
+            ) ? SUCCESS_CODE : ERROR_CODE
         ]);
     }
 
@@ -75,6 +81,8 @@ class UserController extends Controller
         $result = $this->repo->edit(
             $request->input('id'),
             $request->input('password'),
+            $request->input('fullname'),
+            $request->input('email'),
             $request->input('role')
         );
         return response()->json([

@@ -76,6 +76,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -100,6 +116,15 @@ __WEBPACK_IMPORTED_MODULE_2_vee_validate__["a" /* Validator */].localize({
                 min: 'Mật khẩu tối thiểu 8 ký tự',
                 max: 'Mật khẩu tối đa 100 ký tự',
                 confirmed: 'Mật khẩu không trùng khớp'
+            },
+            fullname: {
+                min: 'Tên thiểu 6 ký tự',
+                max: 'Tên tối đa 100 ký tự'
+            },
+            email: {
+                email: 'Định dạng email không phù hợp',
+                min: 'Mật khẩu tối thiểu 6 ký tự',
+                max: 'Mật khẩu tối đa 100 ký tự'
             }
         }
     }
@@ -127,16 +152,14 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_2_vee_
         user: {
             type: Object,
             default: {}
-        },
-        selectedRole: {
-            type: Number,
-            default: null
         }
+
     },
     data: function data() {
         return {
             submiting: false,
-            keepPassword: true
+            keepPassword: true,
+            selectedRole: null
         };
     },
     mounted: function mounted() {
@@ -210,16 +233,16 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_2_vee_
                 }).change(function () {
                     vm.selectedRole = $(this).val();
                 });
-                if (!vm.editing && vm.roles) {
-                    vm.$emit('role');
-                }
-                if (vm.editing && vm.selectedRole) {
-                    $('#slRole').val(vm.selectedRole).trigger('change');
-                }
             });
         }
     },
-    watch: {}
+    watch: {
+        user: function user(obj) {
+            if (obj && obj.role && obj.role[0]) {
+                $('#slRole').val(obj.role[0].id).trigger('change');
+            }
+        }
+    }
 });
 
 /***/ }),
@@ -34858,7 +34881,87 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       expression: "errors.has('re_password')"
     }],
     staticClass: "text-danger"
-  }, [_vm._v(_vm._s(_vm.errors.first('re_password')))])]) : _vm._e(), _vm._v(" "), (_vm.roles && _vm.roles.length) ? _c('div', {
+  }, [_vm._v(_vm._s(_vm.errors.first('re_password')))])]) : _vm._e(), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "form-control-label"
+  }, [_vm._v("Tên người dùng:")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "validate",
+      rawName: "v-validate",
+      value: ('min:6|max:100'),
+      expression: "'min:6|max:100'"
+    }, {
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.user.fullname),
+      expression: "user.fullname"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "fullname",
+      "name": "fullname",
+      "data-vv-as": "Tên đầy đủ"
+    },
+    domProps: {
+      "value": (_vm.user.fullname)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.user, "fullname", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('span', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (!_vm.editing && _vm.errors.has('fullname')),
+      expression: "!editing && errors.has('fullname')"
+    }],
+    staticClass: "text-danger"
+  }, [_vm._v(_vm._s(_vm.errors.first('fullname')))])]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "form-control-label"
+  }, [_vm._v("Email:")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "validate",
+      rawName: "v-validate",
+      value: ('email:true|min:6|max:100'),
+      expression: "'email:true|min:6|max:100'"
+    }, {
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.user.email),
+      expression: "user.email"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "email",
+      "name": "email",
+      "data-vv-as": "Email"
+    },
+    domProps: {
+      "value": (_vm.user.email)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.user, "email", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('span', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (!_vm.editing && _vm.errors.has('email')),
+      expression: "!editing && errors.has('email')"
+    }],
+    staticClass: "text-danger"
+  }, [_vm._v(_vm._s(_vm.errors.first('email')))])]), _vm._v(" "), (_vm.roles && _vm.roles.length) ? _c('div', {
     staticClass: "form-group m--margin-bottom-0"
   }, [_c('label', {
     staticClass: "form-control-label"
@@ -34878,7 +34981,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     return _c('option', {
       domProps: {
         "value": role.id,
-        "innerHTML": _vm._s(role.name)
+        "innerHTML": _vm._s(role.description)
       }
     })
   }))]) : _vm._e(), _vm._v(" "), (_vm.submiting && !_vm.selectedRole) ? _c('span', {
@@ -35011,10 +35114,11 @@ var app = new Vue({
             editingUser: {
                 username: null,
                 password: null,
+                fullname: null,
+                email: null,
                 re_password: null
             },
-            isEditing: false,
-            selectedRole: null
+            isEditing: false
         };
     },
     mounted: function mounted() {
@@ -35028,17 +35132,15 @@ var app = new Vue({
             this.editingUser = {
                 username: null,
                 password: null,
+                fullname: null,
+                email: null,
                 re_password: null
             };
             this.isEditing = false;
-            this.selectedRole = null;
         },
         showModal: function showModal() {
             this.initListRoles();
             $('#user-modal').modal('show');
-        },
-        setDefaultRole: function setDefaultRole() {
-            this.selectedRole = this.roles ? this.roles[0].id : null;
         },
 
         initTableUser: function initTableUser() {
@@ -35079,10 +35181,16 @@ var app = new Vue({
                         data: "username",
                         orderable: true
                     }, {
+                        data: "fullname",
+                        orderable: true
+                    }, {
+                        data: "email",
+                        orderable: true
+                    }, {
                         data: null,
-                        orderable: true,
+                        orderable: false,
                         render: function render(data, type, row) {
-                            return data['role']['0'] ? data['role']['0']['description'] : '';
+                            return row['role'] && row['role']['0'] != undefined && row['role']['0']['description'] ? row['role']['0']['description'] : '';
                         }
                     }, {
                         data: "status",
@@ -35111,17 +35219,17 @@ var app = new Vue({
                         }
                     }]
                 });
-            }
-            vm.userTable.on('draw.dt search.dt order.dt', function () {
-                vm.userTable.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
-                    cell.innerHTML = i + 1;
+                vm.userTable.on('draw.dt search.dt order.dt', function () {
+                    vm.userTable.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+                        cell.innerHTML = i + 1;
+                    });
+                    $('#m_user_table_filter input').addClass('form-control m-input m-input--square');
                 });
-                $('#m_user_table_filter input').addClass('form-control m-input m-input--square');
-            });
-            $('select').select2({
-                width: '60px',
-                minimumResultsForSearch: -1
-            });
+                $('select').select2({
+                    width: '60px',
+                    minimumResultsForSearch: -1
+                });
+            }
         },
         initListRoles: function initListRoles() {
             var vm = this;
@@ -35146,7 +35254,7 @@ var app = new Vue({
                 var userId = $(this).attr('data-id');
                 var rowData = vm.userTable.row($(this).parents('tr')).data();
 
-                bootbox.confirm('Bạn có chắc chắn muốn xóa tài khoản <span class="text-danger">' + rowData.username + '</span>', function (result) {
+                bootbox.confirm('Bạn có chắc chắn muốn xóa tài khoản <span class="text-danger">' + (rowData.fullname ? rowData.fullname : rowData.username) + '</span>', function (result) {
                     if (result) {
                         $.ajax({
                             "url": _app.baseUrl + "/admin/user/" + userId + "/delete",
@@ -35169,7 +35277,7 @@ var app = new Vue({
 
             $(document).on('change', '.change-user-status', function () {
                 var rowData = vm.userTable.row($(this).parents('tr')).data();
-                var msg = rowData.status == _app.USER_ACTIVE_STATUS ? 'Bạn có chắc chắn muốn khóa tài khoản <span class="text-danger">' + rowData.username + '</span>' : 'Bạn có chắc chắn muốn kích hoạt lại tài khoản <span class="text-danger">' + rowData.username + '</span>';
+                var msg = rowData.status == _app.USER_ACTIVE_STATUS ? 'Bạn có chắc chắn muốn khóa tài khoản <span class="text-danger">' + (rowData.fullname ? rowData.fullname : rowData.username) + '</span>' : 'Bạn có chắc chắn muốn kích hoạt lại tài khoản <span class="text-danger">' + (rowData.fullname ? rowData.fullname : rowData.username) + '</span>';
                 bootbox.confirm(msg, function (result) {
                     if (result) {
                         $.ajax({
@@ -35196,7 +35304,6 @@ var app = new Vue({
             $(document).on('click', '.edit-user', function () {
                 var rowData = vm.userTable.row($(this).parents('tr')).data();
                 vm.editingUser = rowData;
-                vm.selectedRole = rowData.role['0']['id'];
                 vm.isEditing = true;
                 $('#user-modal').modal('show');
             });
