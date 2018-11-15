@@ -50,6 +50,7 @@ var SnippetLogin = function () {
                 }), l.valid() && (a.addClass("m-loader m-loader--right m-loader--light").attr("disabled", !0), l.ajaxSubmit({
                     url: l.attr('action'),
                     success: function (e, t, r, s) {
+                        console.log(e);
                         if (t && t == 'success') {
                             window.location.href = e;
                         } else {
@@ -78,7 +79,7 @@ var SnippetLogin = function () {
                         setTimeout(function () {
                             if (s && s == 'success') {
                                 window.location.href = baseUrl;
-                            }else{
+                            } else {
                                 t.removeClass("m-loader m-loader--right m-loader--light").attr("disabled", !1), r.clearForm(), r.validate().resetForm(), a();
                                 var l = e.find(".m-login__signin form");
                                 l.clearForm(), l.validate().resetForm(), i(l, "success", "Đăng ký thành công.")

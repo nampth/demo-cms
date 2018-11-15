@@ -62,7 +62,7 @@
                         </div>
                         <div class="form-group m-form__group">
                             <input class="form-control m-input m-login__form-input--last" type="password"
-                                   placeholder="Xác nhận mật khẩu" name="password">
+                                   placeholder="Mật khẩu" name="password">
                         </div>
                         <div class="row m-login__form-sub">
                             <div class="col m--align-left m-login__form-left">
