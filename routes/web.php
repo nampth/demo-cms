@@ -13,6 +13,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Auth\RegisterController;
 
 Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'role:admin'], function () {
     include_route_files(__DIR__ . '/backend/');
@@ -23,6 +24,7 @@ Route::group(['namespace' => 'Frontend', 'as' => 'frontend.'], function () {
 });
 
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::get('/home', function () {
     if (Auth::check()) {
         if (Auth::user()->role()->first()->name == 'admin') {
@@ -36,4 +38,5 @@ Route::get('/home', function () {
 
 })->name('home');
 Route::post('login', [LoginController::class, 'login'])->name('login.post');
+Route::post('/register', [RegisterController::class, 'register'])->name('register.post');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');

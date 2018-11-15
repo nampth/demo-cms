@@ -1,3 +1,5 @@
+import {baseUrl} from "../../../../../../resources/js/app.constants";
+
 var SnippetLogin = function () {
     jQuery.extend(jQuery.validator.messages, {
         required: "Thông tin không được để trống.",
@@ -63,6 +65,7 @@ var SnippetLogin = function () {
                 var t = $(this), r = $(this).closest("form");
                 r.validate({
                     rules: {
+                        username: {required: !0},
                         fullname: {required: !0},
                         email: {required: !0, email: !0},
                         password: {required: !0},
@@ -70,13 +73,32 @@ var SnippetLogin = function () {
                         agree: {required: !0}
                     }
                 }), r.valid() && (t.addClass("m-loader m-loader--right m-loader--light").attr("disabled", !0), r.ajaxSubmit({
-                    url: "",
+                    url: r.attr('action'),
                     success: function (l, s, n, o) {
                         setTimeout(function () {
-                            t.removeClass("m-loader m-loader--right m-loader--light").attr("disabled", !1), r.clearForm(), r.validate().resetForm(), a();
-                            var l = e.find(".m-login__signin form");
-                            l.clearForm(), l.validate().resetForm(), i(l, "success", "Thank you. To complete your registration please check your email.")
+                            if (s && s == 'success') {
+                                window.location.href = baseUrl;
+                            }else{
+                                t.removeClass("m-loader m-loader--right m-loader--light").attr("disabled", !1), r.clearForm(), r.validate().resetForm(), a();
+                                var l = e.find(".m-login__signin form");
+                                l.clearForm(), l.validate().resetForm(), i(l, "success", "Đăng ký thành công.")
+                            }
                         }, 2e3)
+                    },
+                    error: function (e) {
+                        var text = '';
+                        var errors = JSON.parse(e.responseText);
+                        if (errors.errors) {
+                            errors = errors.errors;
+                            for (var key in errors) {
+                                // check also if property is not inherited from prototype
+                                if (errors.hasOwnProperty(key)) {
+                                    var value = errors[key][0];
+                                    text += value + '<br/>';
+                                }
+                            }
+                        }
+                        t.removeClass("m-loader m-loader--right m-loader--light").attr("disabled", !1), i(r, "danger", text)
                     }
                 }))
             }), $("#m_login_forget_password_submit").click(function (l) {

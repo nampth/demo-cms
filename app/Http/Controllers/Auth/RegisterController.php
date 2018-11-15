@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\Role;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -43,30 +44,50 @@ class RegisterController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
     {
+        $attributes = [
+            'username' => 'Tên đăng nhập',
+            'email' => 'Địa chỉ Email',
+            'fullname' => 'Tên đầy đủ',
+            'password' => 'Mật khẩu',
+            'rpassword' => 'Xác nhận mật khẩu',
+        ];
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
+            'username' => 'required|string|max:100|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
+            'fullname' => 'nullable|min:6|max:100',
+            'password' => 'required|string|min:6|same:rpassword',
+            'rpassword' => 'required|string|min:6',
+        ], [], $attributes);
     }
 
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return \App\User
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
+        $user = User::create([
+            'username' => $data['username'],
             'email' => $data['email'],
+            'fullname' => $data['fullname'],
             'password' => Hash::make($data['password']),
+            'status' => USER_STATUS_ACTIVE
         ]);
+        if (!$user) {
+            return false;
+        }
+        $role = Role::where('name', USER_ROLE_NORMAL)->first();
+        if (!$role) {
+            return false;
+        }
+        $user->role()->attach(intval($role->id));
+        return $user;
     }
 }

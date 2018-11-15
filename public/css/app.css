@@ -10515,6 +10515,10 @@ a.text-dark:focus {
   margin-bottom: 0px !important;
 }
 
+.m-login.m-login--2.m-login--signin .m-login__signup {
+  display: block;
+}
+
 .navbar-laravel {
   background-color: #fff;
   -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);

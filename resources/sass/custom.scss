@@ -37,7 +37,6 @@
   padding: 5px;
 }
 
-
 .select2-selection__rendered {
   height: 30px;
   margin-bottom: 4px;
@@ -46,4 +45,8 @@
 
 .m--margin-bottom-0 {
   margin-bottom: 0px !important;
+}
+
+.m-login.m-login--2.m-login--signin .m-login__signup {
+  display: block;
 }
