@@ -26,6 +26,6 @@ class PermissionMiddleware
             return $next($request);
         }
 
-        return redirect()->route('login');
+        return abort(404);
     }
 }
