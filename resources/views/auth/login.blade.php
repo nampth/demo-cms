@@ -80,6 +80,8 @@
                                     class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air  m-login__btn m-login__btn--primary">
                                 Đăng nhập
                             </button>
+                            <a class="btn m-btn m-btn--pill m-btn--custom m-btn--air m-login__btn"
+                               href="{{ route('home') }}">Trở lại</a>
                         </div>
                     </form>
                 </div>

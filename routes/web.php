@@ -33,7 +33,7 @@ Route::get('/home', function () {
             return redirect(route('frontend.index'));
         }
     } else {
-        return redirect(route('login'));
+        return redirect('/');
     }
 
 })->name('home');
