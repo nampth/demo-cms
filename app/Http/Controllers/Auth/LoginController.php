@@ -51,7 +51,7 @@ class LoginController extends Controller
         $this->clearLoginAttempts($request);
 
         return $this->authenticated($request, $this->guard()->user())
-            ? redirect()->intended(url('/')) : redirect()->intended(url('/') . $this->redirectPath());
+            ? url('/') : url('/') . $this->redirectPath();
     }
 
     public function showLoginForm()

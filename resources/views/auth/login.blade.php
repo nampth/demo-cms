@@ -9,7 +9,7 @@
     <title>Demo Cms | Đăng nhập</title>
     <meta name="description" content="Latest updates and statistic charts">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
-
+    <meta id="site_meta" data-url="{{ url('/') }}">
     <!--begin::Web font -->
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
     <script>

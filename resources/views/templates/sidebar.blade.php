@@ -46,13 +46,25 @@
                     </a>
                 </li>
             @endif
-                @if(checkSidebar(ADMIN_PERMISSION_MANAGEMENT))
-                    <li class="m-menu__item  {{ setActiveMenu(route('admin.permission.index')) }}" aria-haspopup="true">
-                        <a href="{{ route('admin.permission.index') }}" class="m-menu__link ">
-                            <i class="m-menu__link-icon la la-ban"></i>
-                            <span class="m-menu__link-title">
+            @if(checkSidebar(ADMIN_PERMISSION_MANAGEMENT))
+                <li class="m-menu__item  {{ setActiveMenu(route('admin.permission.index')) }}" aria-haspopup="true">
+                    <a href="{{ route('admin.permission.index') }}" class="m-menu__link ">
+                        <i class="m-menu__link-icon la la-ban"></i>
+                        <span class="m-menu__link-title">
                         <span class="m-menu__link-wrap">
                             <span class="m-menu__link-text">Quản trị quyền người dùng</span>
+                        </span>
+                    </span>
+                    </a>
+                </li>
+            @endif
+                @if(checkSidebar(SALE_DASHBOARD))
+                    <li class="m-menu__item  {{ setActiveMenu(route('frontend.sale.dashboard')) }}" aria-haspopup="true">
+                        <a href="{{ route('frontend.sale.dashboard') }}" class="m-menu__link ">
+                            <i class="m-menu__link-icon flaticon-line-graph"></i>
+                            <span class="m-menu__link-title">
+                        <span class="m-menu__link-wrap">
+                            <span class="m-menu__link-text">Dashboard</span>
                         </span>
                     </span>
                         </a>

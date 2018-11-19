@@ -1,5 +1,4 @@
-import {baseUrl} from "../../../../../../resources/js/app.constants";
-
+var baseUrl = jQuery('#site_meta').attr('data-url');
 var SnippetLogin = function () {
     jQuery.extend(jQuery.validator.messages, {
         required: "Thông tin không được để trống.",
@@ -50,7 +49,6 @@ var SnippetLogin = function () {
                 }), l.valid() && (a.addClass("m-loader m-loader--right m-loader--light").attr("disabled", !0), l.ajaxSubmit({
                     url: l.attr('action'),
                     success: function (e, t, r, s) {
-                        console.log(e);
                         if (t && t == 'success') {
                             window.location.href = e;
                         } else {
