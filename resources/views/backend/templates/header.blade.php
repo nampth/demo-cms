@@ -388,7 +388,7 @@
                                                     </li>
                                                     <li class="m-nav__item">
                                                         <a href="{{ url('/logout') }}"
-                                                           class="btn m-btn--pill    btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">Logout</a>
+                                                           class="btn m-btn--pill    btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">Đăng xuất</a>
                                                     </li>
                                                 </ul>
                                             </div>

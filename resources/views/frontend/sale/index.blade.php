@@ -1,4 +1,4 @@
-@extends('templates.index')
+@extends('frontend.templates.index')
 
 @section('asset_header')
 @endsection

@@ -53,12 +53,12 @@
 <div class="m-grid m-grid--hor m-grid--root m-page">
 
     <!-- BEGIN: Header -->
-@include('templates.header')
+@include('backend.templates.header')
 <!-- END: Header -->
     <!-- begin::Body -->
     <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body">
 
-        @include('templates.sidebar')
+        @include('backend.templates.sidebar')
         <div class="m-grid__item m-grid__item--fluid m-wrapper">
             <div class="m-content" id="app">
                 {{--<template>--}}
@@ -70,7 +70,7 @@
     <script src="{{ asset('/js/app.js') }}" type="text/javascript"></script>
 
 
-@include('templates.footer')
+@include('backend.templates.footer')
 <!-- end::Footer -->
 </div>
 
