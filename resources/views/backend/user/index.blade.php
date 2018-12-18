@@ -30,7 +30,7 @@
             </div>
         </div>
         <div class="m-portlet__body">
-            @include('backend.user.partitals.table')
+            @include('backend.user.partials.table')
         </div>
     </div>
     <user-modal :id="'user-modal'" :roles="roles" :editing="isEditing" :user="editingUser"

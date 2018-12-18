@@ -30,7 +30,7 @@
             </div>
         </div>
         <div class="m-portlet__body">
-            @include('backend.role.partitals.table')
+            @include('backend.role.partials.table')
         </div>
     </div>
     <role-modal :id="'role-modal'" :permissions="permissions" :editing="isEditing" :role="editingRole"
