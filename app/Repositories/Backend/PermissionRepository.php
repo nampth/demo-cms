@@ -28,14 +28,16 @@ class PermissionRepository extends BaseRepository
                 ->orWhere('description', 'LIKE', "%$keyword%");
         }
 
-        $query = $query->limit($length)->offset($start);
         if ($orderBy) {
             $query = $query->orderBy($orderBy, $orderType);
         }
 
         if ($countAll) {
             return $query->count();
+        }else{
+            $query = $query->limit($length)->offset($start);
         }
+
         return $query->get();
     }
 
