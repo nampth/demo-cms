@@ -8,13 +8,18 @@
 
 namespace App\Http\Controllers\Frontend;
 
-
 use App\Http\Controllers\Controller;
 
 class SaleController extends Controller
 {
+    protected $repo;
+
+    public function __construct()
+    {
+    }
+
     public function dashboard()
     {
-        return view('frontend.sale.index');
+        return view('backend.sale.index');
     }
 }

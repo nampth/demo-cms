@@ -34,8 +34,6 @@ var app = new Vue({
             } else {
                 vm.roleTable = $('#m_role_table').DataTable(
                     {
-                        "scrollY": 200,
-                        "scrollX": true,
                         "dom": "<'row'<'col-sm-6'l><'col-sm-12 col-md-6'f >><'row'<'col-sm-12'tr>><'row'<'col-sm-5'i><'col-sm-7'p>>",
                         "processing": true,
                         "serverSide": true,
@@ -92,8 +90,9 @@ var app = new Vue({
                 );
             }
             vm.roleTable.on('draw.dt search.dt order.dt', function () {
+                var info = vm.roleTable.page.info();
                 vm.roleTable.column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {
-                    cell.innerHTML = i + 1;
+                    cell.innerHTML = info.start + i + 1;
                 });
                 $('#m_role_table_filter input').addClass('form-control m-input m-input--square');
             });

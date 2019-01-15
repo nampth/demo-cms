@@ -8,7 +8,6 @@
 
 namespace App\Http\Controllers\Backend;
 
-
 use App\Http\Requests\Role\AddRoleRequest;
 use App\Http\Requests\Role\EditRoleRequest;
 use App\Repositories\Backend\RoleRepository;

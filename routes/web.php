@@ -27,15 +27,10 @@ Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::get('/home', function () {
     if (Auth::check()) {
-        if (Auth::user()->role()->first()->name == 'admin') {
-            return redirect(route('admin.dashboard.index'));
-        } else {
-            return redirect(route('frontend.index'));
-        }
+        return redirect(Auth::user()->role()->first()->default_redirect);
     } else {
-        return redirect('/');
+        return redirect('login');
     }
-
 })->name('home');
 Route::post('login', [LoginController::class, 'login'])->name('login.post');
 Route::post('/register', [RegisterController::class, 'register'])->name('register.post');
