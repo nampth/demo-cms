@@ -16,10 +16,12 @@ class SaleController extends Controller
 
     public function __construct()
     {
+
     }
 
     public function dashboard()
     {
         return view('backend.sale.index');
     }
+
 }
