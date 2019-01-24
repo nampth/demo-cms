@@ -46,7 +46,7 @@ var app = new Vue({
                             "info": "Hiển thị _START_ đến _END_ của _TOTAL_ bản ghi",
                             "infoEmpty": "Không có bản ghi nào thỏa mãn",
                             "infoFiltered": "(lọc từ tổng số _MAX_ bản ghi)",
-                            "processing": "Đang tải dữ liệu...",
+                            "processing": "<div class='m-loader  m-loader--primary m-loader--lg'></div><br/>Đang tải dữ liệu...",
                             "search": "Tìm kiếm:",
                             "paginate": {
                                 "first": "Đầu",
