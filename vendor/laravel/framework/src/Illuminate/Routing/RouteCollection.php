@@ -2,14 +2,14 @@
 
 namespace Illuminate\Routing;
 
-use Countable;
 use ArrayIterator;
-use IteratorAggregate;
-use Illuminate\Support\Arr;
+use Countable;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Illuminate\Support\Arr;
+use IteratorAggregate;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class RouteCollection implements Countable, IteratorAggregate
 {
@@ -21,7 +21,7 @@ class RouteCollection implements Countable, IteratorAggregate
     protected $routes = [];
 
     /**
-     * An flattened array of all of the routes.
+     * A flattened array of all of the routes.
      *
      * @var array
      */
@@ -239,20 +239,28 @@ class RouteCollection implements Countable, IteratorAggregate
             }))->bind($request);
         }
 
-        $this->methodNotAllowed($methods);
+        $this->methodNotAllowed($methods, $request->method());
     }
 
     /**
      * Throw a method not allowed HTTP exception.
      *
      * @param  array  $others
+     * @param  string  $method
      * @return void
      *
      * @throws \Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException
      */
-    protected function methodNotAllowed(array $others)
+    protected function methodNotAllowed(array $others, $method)
     {
-        throw new MethodNotAllowedHttpException($others);
+        throw new MethodNotAllowedHttpException(
+            $others,
+            sprintf(
+                'The %s method is not supported for this route. Supported methods: %s.',
+                $method,
+                implode(', ', $others)
+            )
+        );
     }
 
     /**
