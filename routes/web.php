@@ -14,6 +14,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Common\UserController;
 
 Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'role:admin'], function () {
     include_route_files(__DIR__ . '/backend/');
@@ -35,3 +36,8 @@ Route::get('/home', function () {
 Route::post('login', [LoginController::class, 'login'])->name('login.post');
 Route::post('/register', [RegisterController::class, 'register'])->name('register.post');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::group(['namespace' => 'User', 'prefix' => 'user', 'as' => 'user.'], function () {
+    Route::get('/changepass', [UserController::class, 'changepassHome'])->name('changepassHome');
+    Route::post('/changepass', [UserController::class, 'changePass'])->name('changepass');
+});

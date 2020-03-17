@@ -332,7 +332,8 @@
                                                 </div>
                                                 <div class="m-card-user__details">
                                                     <span class="m-card-user__name m--font-weight-500">{{ \Illuminate\Support\Facades\Auth::user()->fullname ? \Illuminate\Support\Facades\Auth::user()->fullname :  \Illuminate\Support\Facades\Auth::user()->username }}</span>
-                                                    <a href="#" class="m-card-user__email m--font-weight-300 m-link">{{ \Illuminate\Support\Facades\Auth::user()->email }}</a>
+                                                    <a href="#"
+                                                       class="m-card-user__email m--font-weight-300 m-link">{{ \Illuminate\Support\Facades\Auth::user()->email }}</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -384,11 +385,18 @@
                                                             <span class="m-nav__link-text">Support</span>
                                                         </a>
                                                     </li>
+                                                    <li class="m-nav__item">
+                                                        <a href="{{ route('user.changepassHome')}}" class="m-nav__link">
+                                                            <i class="m-nav__link-icon flaticon-lock"></i>
+                                                            <span class="m-nav__link-text">Change Password</span>
+                                                        </a>
+                                                    </li>
                                                     <li class="m-nav__separator m-nav__separator--fit">
                                                     </li>
                                                     <li class="m-nav__item">
                                                         <a href="{{ url('/logout') }}"
-                                                           class="btn m-btn--pill    btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">Đăng xuất</a>
+                                                           class="btn m-btn--pill    btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">Đăng
+                                                            xuất</a>
                                                     </li>
                                                 </ul>
                                             </div>

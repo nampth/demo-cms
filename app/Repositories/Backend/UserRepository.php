@@ -11,6 +11,7 @@ namespace App\Repositories\Backend;
 use App\Repositories\BaseRepository;
 use App\Models\Role;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class UserRepository extends BaseRepository
 {
@@ -99,5 +100,12 @@ class UserRepository extends BaseRepository
         $user->email = $email;
         return $user->save();
 
+    }
+
+    public function userChangePass($old, $new)
+    {
+        $user = Auth::user();
+        $user->password = bcrypt($new);
+        return $user->save();
     }
 }
