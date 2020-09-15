@@ -1,8 +1,8 @@
 # demo-cms
-Admin cms laravel. Base on Metronic template Admin UI, VueJs and Laravel 
+- Admin cms laravel. Base on Metronic template Admin UI, VueJs and Laravel 
+- Template shop Metronic UI
 
 setup:
-- create env file
 - composer update
 - yarn install
 - create schema demo-cms and import db.sql file to schema
