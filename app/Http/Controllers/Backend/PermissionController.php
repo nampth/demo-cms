@@ -56,24 +56,28 @@ class PermissionController extends Controller
     public function listingAll(Request $request)
     {
         return response()->json([
-            'data' => $this->repo->listingAll()
+            'data' => $this->repo->all()
         ]);
     }
 
     public function add(AddPermissionRequest $request)
     {
         return response()->json([
-            'code' => $this->repo->add($request->input('name'), $request->input('description')) ? SUCCESS_CODE : ERROR_CODE
+            'code' => $this->repo->create([
+                'name' => $request->input('name'),
+                'description' => $request->input('description')
+            ]) ? SUCCESS_CODE : ERROR_CODE
         ]);
     }
 
     public function update(EditPermissionRequest $request)
     {
-        $result = $this->repo->update(
+        $result = $this->repo->updateById(
             $request->input('id'),
-            $request->input('name'),
-            $request->input('description')
-        );
+            [
+                'name' => $request->input('name'),
+                'description' => $request->input('description')
+            ]);
         return response()->json([
             'code' => $result ? SUCCESS_CODE : ERROR_CODE,
         ]);
@@ -81,9 +85,8 @@ class PermissionController extends Controller
 
     public function delete($id)
     {
-        $result = $this->repo->deletePermission($id);
         return response()->json([
-            'code' => $result ? SUCCESS_CODE : ERROR_CODE,
+            'code' => $this->repo->deleteById($id) ? SUCCESS_CODE : ERROR_CODE,
         ]);
     }
 }

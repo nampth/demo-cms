@@ -56,5 +56,11 @@
             "plugin:vue/essential",
             "@vue/standard"
         ]
-    }
+    },
+    "name": "demo-cms",
+    "version": "1.0.0",
+    "main": "index.js",
+    "repository": "https://github.com/nampth/demo-cms.git",
+    "author": "nampth <nampth@kalapa.vn>",
+    "license": "MIT"
 }

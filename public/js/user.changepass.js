@@ -11128,7 +11128,7 @@ var USER_DEACT_STATUS = exports.USER_DEACT_STATUS = 1;
 
 /***/ }),
 
-/***/ "./resources/js/pages/user.changepass.js":
+/***/ "./resources/js/pages/common/user.changepass.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11237,7 +11237,7 @@ var app = new Vue({
 /***/ 5:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__("./resources/js/pages/user.changepass.js");
+module.exports = __webpack_require__("./resources/js/pages/common/user.changepass.js");
 
 
 /***/ })

@@ -9,7 +9,7 @@
 namespace App\Repositories\Backend;
 
 
-use App\Models\Role;
+use App\Models\Backend\Role;
 use App\Repositories\BaseRepository;
 
 class RoleRepository extends BaseRepository

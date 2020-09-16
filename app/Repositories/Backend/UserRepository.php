@@ -9,7 +9,7 @@
 namespace App\Repositories\Backend;
 
 use App\Repositories\BaseRepository;
-use App\Models\Role;
+use App\Models\Backend\Role;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 

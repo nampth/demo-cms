@@ -4,9 +4,11 @@ namespace Illuminate\Foundation\Testing\Concerns;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Foundation\Testing\Constraints\HasInDatabase;
-use Illuminate\Foundation\Testing\Constraints\SoftDeletedInDatabase;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Testing\Constraints\CountInDatabase;
+use Illuminate\Testing\Constraints\HasInDatabase;
+use Illuminate\Testing\Constraints\SoftDeletedInDatabase;
 use PHPUnit\Framework\Constraint\LogicalNot as ReverseConstraint;
 
 trait InteractsWithDatabase
@@ -43,6 +45,23 @@ trait InteractsWithDatabase
         );
 
         $this->assertThat($table, $constraint);
+
+        return $this;
+    }
+
+    /**
+     * Assert the count of table entries.
+     *
+     * @param  string  $table
+     * @param  int  $count
+     * @param  string|null  $connection
+     * @return $this
+     */
+    protected function assertDatabaseCount($table, int $count, $connection = null)
+    {
+        $this->assertThat(
+            $table, new CountInDatabase($this->getConnection($connection), $count)
+        );
 
         return $this;
     }
@@ -101,6 +120,19 @@ trait InteractsWithDatabase
     }
 
     /**
+     * Cast a JSON string to a database compatible type.
+     *
+     * @param  array|string  $value
+     * @return \Illuminate\Database\Query\Expression
+     */
+    public function castAsJson($value)
+    {
+        $value = is_array($value) ? json_encode($value) : $value;
+
+        return DB::raw("CAST('$value' AS JSON)");
+    }
+
+    /**
      * Get the database connection.
      *
      * @param  string|null  $connection
@@ -121,7 +153,7 @@ trait InteractsWithDatabase
      * @param  array|string  $class
      * @return $this
      */
-    public function seed($class = 'DatabaseSeeder')
+    public function seed($class = 'Database\\Seeders\\DatabaseSeeder')
     {
         foreach (Arr::wrap($class) as $class) {
             $this->artisan('db:seed', ['--class' => $class, '--no-interaction' => true]);

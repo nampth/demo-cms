@@ -1,24 +1,17 @@
 <?php
 
-/**
- * This file is part of Collision.
- *
- * (c) Nuno Maduro <enunomaduro@gmail.com>
- *
- *  For the full copyright and license information, please view the LICENSE
- *  file that was distributed with this source code.
- */
+declare(strict_types=1);
 
 namespace NunoMaduro\Collision;
 
 use NunoMaduro\Collision\Contracts\ArgumentFormatter as ArgumentFormatterContract;
 
 /**
- * This is an Collision Argument Formatter implementation.
+ * @internal
  *
- * @author Nuno Maduro <enunomaduro@gmail.com>
+ * @see \Tests\Unit\ArgumentFormatterTest
  */
-class ArgumentFormatter implements ArgumentFormatterContract
+final class ArgumentFormatter implements ArgumentFormatterContract
 {
     /**
      * {@inheritdoc}
@@ -30,16 +23,16 @@ class ArgumentFormatter implements ArgumentFormatterContract
         foreach ($arguments as $argument) {
             switch (true) {
                 case is_string($argument):
-                    $result[] = '"'.$argument.'"';
+                    $result[] = '"' . $argument . '"';
                     break;
                 case is_array($argument):
                     $associative = array_keys($argument) !== range(0, count($argument) - 1);
                     if ($recursive && $associative && count($argument) <= 5) {
-                        $result[] = '['.$this->format($argument, false).']';
+                        $result[] = '[' . $this->format($argument, false) . ']';
                     }
                     break;
                 case is_object($argument):
-                    $class = get_class($argument);
+                    $class    = get_class($argument);
                     $result[] = "Object($class)";
                     break;
             }

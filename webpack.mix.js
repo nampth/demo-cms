@@ -38,11 +38,12 @@ mix.js([
     'resources/js/app.js',
     'resources/js/app.constants.js',
 ], 'public/js')
-    .js('resources/js/pages/admin.users.js', 'public/js/admin.users.js')
-    .js('resources/js/pages/admin.roles.js', 'public/js/admin.roles.js')
-    .js('resources/js/pages/admin.permissions.js', 'public/js/admin.permissions.js')
+    // backend
+    .js('resources/js/pages/backend/admin/users.js', 'public/js/admin.users.js')
+    .js('resources/js/pages/backend/admin/roles.js', 'public/js/admin.roles.js')
+    .js('resources/js/pages/backend/admin/permissions.js', 'public/js/admin.permissions.js')
     .js('resources/js/pages/frontend.home.js', 'public/js/frontend.home.js')
-    .js('resources/js/pages/user.changepass.js', 'public/js/user.changepass.js')
+    .js('resources/js/pages/common/user.changepass.js', 'public/js/user.changepass.js')
     .extract(['vue']).version()
     .sass('resources/sass/app.scss', 'public/css').version();
 //

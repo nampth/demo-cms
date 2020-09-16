@@ -50,7 +50,7 @@ class AnnotationFileLoader extends FileLoader
      *
      * @throws \InvalidArgumentException When the file does not exist or its routes cannot be parsed
      */
-    public function load($file, $type = null)
+    public function load($file, string $type = null)
     {
         $path = $this->locator->locate($file);
 
@@ -73,7 +73,7 @@ class AnnotationFileLoader extends FileLoader
     /**
      * {@inheritdoc}
      */
-    public function supports($resource, $type = null)
+    public function supports($resource, string $type = null)
     {
         return \is_string($resource) && 'php' === pathinfo($resource, PATHINFO_EXTENSION) && (!$type || 'annotation' === $type);
     }
@@ -81,11 +81,9 @@ class AnnotationFileLoader extends FileLoader
     /**
      * Returns the full class name for the first class in the file.
      *
-     * @param string $file A PHP file path
-     *
      * @return string|false Full class name if found, false otherwise
      */
-    protected function findClass($file)
+    protected function findClass(string $file)
     {
         $class = false;
         $namespace = false;
@@ -93,6 +91,11 @@ class AnnotationFileLoader extends FileLoader
 
         if (1 === \count($tokens) && T_INLINE_HTML === $tokens[0][0]) {
             throw new \InvalidArgumentException(sprintf('The file "%s" does not contain PHP code. Did you forgot to add the "<?php" start tag at the beginning of the file?', $file));
+        }
+
+        $nsTokens = [T_NS_SEPARATOR => true, T_STRING => true];
+        if (\defined('T_NAME_QUALIFIED')) {
+            $nsTokens[T_NAME_QUALIFIED] = true;
         }
 
         for ($i = 0; isset($tokens[$i]); ++$i) {
@@ -106,9 +109,9 @@ class AnnotationFileLoader extends FileLoader
                 return $namespace.'\\'.$token[1];
             }
 
-            if (true === $namespace && T_STRING === $token[0]) {
+            if (true === $namespace && isset($nsTokens[$token[0]])) {
                 $namespace = $token[1];
-                while (isset($tokens[++$i][1]) && \in_array($tokens[$i][0], [T_NS_SEPARATOR, T_STRING])) {
+                while (isset($tokens[++$i][1], $nsTokens[$tokens[$i][0]])) {
                     $namespace .= $tokens[$i][1];
                 }
                 $token = $tokens[$i];

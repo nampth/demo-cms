@@ -1,4 +1,4 @@
-webpackJsonp([1],{
+webpackJsonp([2],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/js/components/backend/UserModal.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -37746,7 +37746,7 @@ var Component = __webpack_require__("./node_modules/vue-loader/lib/component-nor
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "C:\\xampp\\htdocs\\demo-cms\\resources\\js\\components\\backend\\UserModal.vue"
+Component.options.__file = "E:\\xampp\\htdocs\\demo-cms\\resources\\js\\components\\backend\\UserModal.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] UserModal.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -37771,7 +37771,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ "./resources/js/pages/admin.users.js":
+/***/ "./resources/js/pages/backend/admin/users.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37997,7 +37997,7 @@ var app = new Vue({
 /***/ 1:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__("./resources/js/pages/admin.users.js");
+module.exports = __webpack_require__("./resources/js/pages/backend/admin/users.js");
 
 
 /***/ })

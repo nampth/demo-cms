@@ -9,7 +9,7 @@
 namespace App\Repositories\Backend;
 
 
-use App\Models\Permission;
+use App\Models\Backend\Permission;
 use App\Repositories\BaseRepository;
 
 class PermissionRepository extends BaseRepository
@@ -41,34 +41,4 @@ class PermissionRepository extends BaseRepository
         return $query->get();
     }
 
-
-    public function listingAll()
-    {
-        return $this->model->all();
-    }
-
-    public function add($name, $description)
-    {
-        $permission = new Permission();
-        $permission->name = $name;
-        $permission->description = $description;
-        return $permission->save();
-    }
-
-    public function deletePermission($id)
-    {
-        $permission = Permission::find($id);
-        return $permission->delete();
-    }
-
-    public function update($id, $name, $description)
-    {
-        $permission = Permission::find($id);
-        if (!$permission) {
-            return false;
-        }
-        $permission->name = $name;
-        $permission->description = $description;
-        return $permission->save();
-    }
 }

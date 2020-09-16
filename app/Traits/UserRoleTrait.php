@@ -12,6 +12,6 @@ trait UserRoleTrait
 {
     public function role()
     {
-        return $this->belongsToMany('App\Models\Role', 'user_role', 'user_id', 'role_id');
+        return $this->belongsToMany('App\Models\Backend\Role', 'user_role', 'user_id', 'role_id');
     }
 }
