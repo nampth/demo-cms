@@ -1,5 +1,5 @@
 # demo-cms
-- Admin cms laravel. Base on Metronic template Admin UI, VueJs and Laravel 
+- Laravel Admin template. Base on Metronic template Admin UI, VueJs and Laravel 
 - Template shop Metronic UI
 
 setup:
