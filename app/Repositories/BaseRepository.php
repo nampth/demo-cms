@@ -482,4 +482,36 @@ abstract class BaseRepository implements RepositoryContract
 
         return $this;
     }
+
+    /**
+     * listing data with datatable
+     */
+    public function listingSimple($relations = [], $keyword = "", $arrColumns = [], $start = 0, $length = 10, $orderBy = '', $orderType = 'asc', $countAll = true)
+    {
+        $query = $this->model;
+        if (count($relations) > 0) {
+            $query->with($relations);
+        }
+        if ($keyword && count($arrColumns) > 0) {
+            foreach ($arrColumns as $column) {
+                $query->where(function ($q) use ($keyword, $arrColumns) {
+                    foreach ($arrColumns as $column) {
+                        $q->orWhere($column, 'like', "%$keyword%");
+                    }
+                });
+            }
+        }
+
+        if ($orderBy) {
+            $query = $query->orderBy($orderBy, $orderType);
+        }
+
+        if ($countAll) {
+            return $query->count();
+        } else {
+            $query = $query->limit($length)->offset($start);
+        }
+
+        return $query->get();
+    }
 }
